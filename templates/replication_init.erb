@@ -1,0 +1,4 @@
+dn: cn=<%= @replica %>Agreement,cn=replica,cn="<%= @suffix %>",cn=mapping tree,cn=config
+changetype: modify
+replace: nsds5BeginReplicaRefresh
+nsds5BeginReplicaRefresh: start

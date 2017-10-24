@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# dirsrv    This starts and stops the <%= @name %> dirsrv instance
+#
+# chkconfig:   - 79 21
+# description: 389 Directory Server instance wrapper
+# processname: /usr/sbin/ns-slapd
+# configdir:   /etc/dirsrv/
+# piddir:      /var/run/dirsrv
+# datadir:     /var/lib/dirsrv/slapd-<%= @name %>
+#
+
+case "$1" in
+    start)
+    /etc/init.d/dirsrv start <%= @name %>
+    ;;
+    stop)
+    /etc/init.d/dirsrv stop <%= @name %>
+    ;;
+    restart)
+    /etc/init.d/dirsrv restart <%= @name %>
+    ;;
+    status)
+    /etc/init.d/dirsrv status <%= @name %>
+    ;;
+    *)
+    echo "Usage: $0 {start|stop|restart|status}"
+    exit 1
+    ;;
+esac
+
+exit 0

@@ -1,0 +1,30 @@
+{
+  "description": "Allows you to reinitialize replication for a consumer",
+  "input_method": "stdin",
+  "parameters": {
+    "replica_name": {
+      "description": "Replica name to initialize",
+      "type": "String[1]"
+    },
+    "suffix": {
+      "description": "LDAP suffix to use",
+      "type": "String[1]"
+    },
+    "server_host": {
+      "description": "Host to connect to",
+      "type": "String[1]"
+    },
+    "server_ssl_port": {
+      "description": "SSL port to connect to",
+      "type": "Integer"
+    },
+    "root_dn": {
+      "description": "The root dn to bind as",
+      "type": "String[1]"
+    },
+    "root_dn_pass": {
+      "description": "The root dn password",
+      "type": "String[1]"
+    }
+  }
+}

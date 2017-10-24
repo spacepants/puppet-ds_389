@@ -1,0 +1,36 @@
+dn: <%= @bind_dn %>
+changetype: add
+objectClass: inetorgperson
+objectClass: person
+objectClass: top
+cn: replication manager
+sn: RM
+userPassword: <%= @bind_dn_pass %>
+passwordExpirationTime: 20380119031407Z
+nsIdleTimeout: 0
+
+<%- if @role != 'consumer' -%>
+dn: cn=changelog5,cn=config
+changetype: add
+objectClass: top
+objectClass: extensibleObject
+cn: changelog5
+nsslapd-changelogdir: /var/lib/dirsrv/slapd-<%= @name %>/changelogdb
+
+<%- end -%>
+dn: cn=replica,cn="<%= @suffix %>",cn=mapping tree,cn=config
+changetype: add
+objectClass: top
+objectClass: nsds5replica
+objectClass: extensibleObject
+cn: replica
+nsDS5ReplicaRoot: <%= @suffix %>
+nsDS5ReplicaType: <%= @type %>
+nsds5flags: <%= @flags %>
+nsds5ReplicaBindDN: <%= @bind_dn %>
+<%- if @role != 'consumer' -%>
+nsds5ReplicaPurgeDelay: <%= @purge_delay %>
+<%- end -%>
+<%- if @role == 'supplier' -%>
+nsDS5ReplicaId: <%= @id %>
+<%- end -%>

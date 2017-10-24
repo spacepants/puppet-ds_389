@@ -1,0 +1,69 @@
+{
+  "name": "spacepants-ds_389",
+  "version": "0.1.0",
+  "author": "Paul Bailey",
+  "summary": "Module for installing and managing 389 Directory Server",
+  "license": "Apache-2.0",
+  "source": "",
+  "dependencies": [
+    {
+      "name": "puppetlabs-concat",
+      "version_requirement": ">=4.0.0 <5.0.0"
+    },
+    {
+      "name": "puppetlabs-inifile",
+      "version_requirement": ">=1.0.0 <3.0.0"
+    },
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">=4.2.0 <5.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "16.04",
+        "14.04"
+      ]
+    },
+    {
+      "operatingsystem": "Amazon",
+      "operatingsystemrelease": [
+        "2016.03",
+        "2016.09",
+        "2017.03",
+        "2017.09"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.7.0 < 6.0.0"
+    }
+  ],
+  "pdk-version": "1.1.0",
+  "template-url": "https://github.com/puppetlabs/pdk-module-template",
+  "template-ref": "heads/master-0-g1ca0673"
+}
