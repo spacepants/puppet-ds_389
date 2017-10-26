@@ -545,7 +545,7 @@ describe 'ds_389::instance' do
             )
           }
           it { is_expected.to contain_file('/etc/dirsrv/slapd-specdirectory/specadd1.ldif') }
-          it { is_expected.to contain_exec('Modify ldif specadd1: specdirectory') }
+          it { is_expected.to contain_exec('Add ldif specadd1: specdirectory') }
           it {
             is_expected.to contain_ds_389__add('specadd2').with(
               server_id: 'specdirectory',
@@ -559,7 +559,7 @@ describe 'ds_389::instance' do
             )
           }
           it { is_expected.to contain_file('/etc/dirsrv/slapd-specdirectory/specadd2.ldif') }
-          it { is_expected.to contain_exec('Modify ldif specadd2: specdirectory') }
+          it { is_expected.to contain_exec('Add ldif specadd2: specdirectory') }
 
           it {
             is_expected.to contain_ds_389__add('specbaseload1').with(
@@ -574,7 +574,7 @@ describe 'ds_389::instance' do
             )
           }
           it { is_expected.to contain_file('/etc/dirsrv/slapd-specdirectory/specbaseload1.ldif') }
-          it { is_expected.to contain_exec('Modify ldif specbaseload1: specdirectory') }
+          it { is_expected.to contain_exec('Add ldif specbaseload1: specdirectory') }
           it {
             is_expected.to contain_ds_389__add('specbaseload2').with(
               server_id: 'specdirectory',
@@ -588,7 +588,7 @@ describe 'ds_389::instance' do
             )
           }
           it { is_expected.to contain_file('/etc/dirsrv/slapd-specdirectory/specbaseload2.ldif') }
-          it { is_expected.to contain_exec('Modify ldif specbaseload2: specdirectory') }
+          it { is_expected.to contain_exec('Add ldif specbaseload2: specdirectory') }
         end
 
         context 'when using custom ds_389 params' do
@@ -1269,7 +1269,7 @@ describe 'ds_389::instance' do
             ).that_requires('Anchor[specdirectory_ldif_add]').that_comes_before('Anchor[specdirectory_ldif_base_load]')
           }
           it { is_expected.to contain_file('/etc/dirsrv/slapd-ldap01/specadd1.ldif') }
-          it { is_expected.to contain_exec('Modify ldif specadd1: ldap01') }
+          it { is_expected.to contain_exec('Add ldif specadd1: ldap01') }
           it {
             is_expected.to contain_ds_389__add('specadd2').with(
               server_id: 'ldap01',
@@ -1283,7 +1283,7 @@ describe 'ds_389::instance' do
             ).that_requires('Anchor[specdirectory_ldif_add]').that_comes_before('Anchor[specdirectory_ldif_base_load]')
           }
           it { is_expected.to contain_file('/etc/dirsrv/slapd-ldap01/specadd2.ldif') }
-          it { is_expected.to contain_exec('Modify ldif specadd2: ldap01') }
+          it { is_expected.to contain_exec('Add ldif specadd2: ldap01') }
 
           it {
             is_expected.to contain_ds_389__add('specbaseload1').with(
@@ -1298,7 +1298,7 @@ describe 'ds_389::instance' do
             ).that_requires('Anchor[specdirectory_ldif_base_load]')
           }
           it { is_expected.to contain_file('/etc/dirsrv/slapd-ldap01/specbaseload1.ldif') }
-          it { is_expected.to contain_exec('Modify ldif specbaseload1: ldap01') }
+          it { is_expected.to contain_exec('Add ldif specbaseload1: ldap01') }
           it {
             is_expected.to contain_ds_389__add('specbaseload2').with(
               server_id: 'ldap01',
@@ -1312,7 +1312,7 @@ describe 'ds_389::instance' do
             ).that_requires('Anchor[specdirectory_ldif_base_load]')
           }
           it { is_expected.to contain_file('/etc/dirsrv/slapd-ldap01/specbaseload2.ldif') }
-          it { is_expected.to contain_exec('Modify ldif specbaseload2: ldap01') }
+          it { is_expected.to contain_exec('Add ldif specbaseload2: ldap01') }
         end
       end
     end
