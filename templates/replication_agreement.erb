@@ -6,9 +6,9 @@ cn: <%= @replica %>Agreement
 nsds5ReplicaHost: <%= @replica %>
 nsds5ReplicaPort: <%= @server_ssl_port %>
 nsds5ReplicaTransportInfo: SSL
-nsds5ReplicaBindDN: <%= @bind_dn %>
+nsds5ReplicaBindDN: <%= @_bind_dn %>
 nsds5ReplicaBindMethod: SIMPLE
-nsds5ReplicaCredentials: <%= @bind_dn_pass %>
+nsds5ReplicaCredentials: <%= @replication_pass %>
 nsds5ReplicaRoot: <%= @root_dn %>
 description: replication agreement from <%= @name %> to <%= @replica %>
 <%- if @attribute_list -%>

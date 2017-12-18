@@ -1,11 +1,12 @@
-dn: <%= @bind_dn %>
+dn: <%= @_bind_dn %>
 changetype: add
 objectClass: inetorgperson
 objectClass: person
 objectClass: top
-cn: replication manager
-sn: RM
-userPassword: <%= @bind_dn_pass %>
+cn: <%= @replication_user %>
+givenName: Replication
+sn: Manager
+userPassword: <%= @replication_pass %>
 passwordExpirationTime: 20380119031407Z
 nsIdleTimeout: 0
 
@@ -27,7 +28,7 @@ cn: replica
 nsDS5ReplicaRoot: <%= @suffix %>
 nsDS5ReplicaType: <%= @type %>
 nsds5flags: <%= @flags %>
-nsds5ReplicaBindDN: <%= @bind_dn %>
+nsds5ReplicaBindDN: <%= @_bind_dn %>
 <%- if @role != 'consumer' -%>
 nsds5ReplicaPurgeDelay: <%= @purge_delay %>
 <%- end -%>

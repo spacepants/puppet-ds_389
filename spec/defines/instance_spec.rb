@@ -453,8 +453,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_id: 'specdirectory',
               replication: {
-                'bind_dn' => 'cn=Replication Manager,cn=config',
-                'bind_dn_pass' => 'supersecret',
+                'replication_pass' => 'supersecret',
                 'role' => 'consumer',
               },
             }
@@ -464,8 +463,7 @@ describe 'ds_389::instance' do
 
           it {
             is_expected.to contain_ds_389__replication('specdirectory').with(
-              bind_dn: 'cn=Replication Manager,cn=config',
-              bind_dn_pass: 'supersecret',
+              replication_pass: 'supersecret',
               role: 'consumer',
               root_dn: 'cn=Directory Manager',
               root_dn_pass: 'supersecure',
@@ -1162,7 +1160,7 @@ describe 'ds_389::instance' do
               subject_alt_names: ['ldap01.test.org', 'ldap02.test.org'],
               replication: {
                 'bind_dn' => 'cn=Replication Manager,cn=config',
-                'bind_dn_pass' => 'supersecret',
+                'replication_pass' => 'supersecret',
                 'role' => 'consumer',
               },
             }
@@ -1172,8 +1170,7 @@ describe 'ds_389::instance' do
 
           it {
             is_expected.to contain_ds_389__replication('ldap01').with(
-              bind_dn: 'cn=Replication Manager,cn=config',
-              bind_dn_pass: 'supersecret',
+              replication_pass: 'supersecret',
               role: 'consumer',
               root_dn: 'cn=Directory Manager',
               root_dn_pass: 'supersecure',
