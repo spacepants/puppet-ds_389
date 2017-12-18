@@ -18,8 +18,9 @@ changetype: add
 objectClass: inetorgperson
 objectClass: person
 objectClass: top
-cn: replication manager
-sn: RM
+cn: Replication Manager
+givenName: Replication
+sn: Manager
 userPassword: supersecret
 passwordExpirationTime: 20380119031407Z
 nsIdleTimeout: 0
@@ -43,8 +44,9 @@ changetype: add
 objectClass: inetorgperson
 objectClass: person
 objectClass: top
-cn: replication manager
-sn: RM
+cn: Replication Manager
+givenName: Replication
+sn: Manager
 userPassword: supersecret
 passwordExpirationTime: 20380119031407Z
 nsIdleTimeout: 0
@@ -68,8 +70,9 @@ changetype: add
 objectClass: inetorgperson
 objectClass: person
 objectClass: top
-cn: replication manager
-sn: RM
+cn: Replication Manager
+givenName: Replication
+sn: Manager
 userPassword: supersecret
 passwordExpirationTime: 20380119031407Z
 nsIdleTimeout: 0
@@ -101,8 +104,9 @@ changetype: add
 objectClass: inetorgperson
 objectClass: person
 objectClass: top
-cn: replication manager
-sn: RM
+cn: Replication Manager
+givenName: Replication
+sn: Manager
 userPassword: supersecret
 passwordExpirationTime: 20380119031407Z
 nsIdleTimeout: 0
@@ -134,8 +138,9 @@ changetype: add
 objectClass: inetorgperson
 objectClass: person
 objectClass: top
-cn: replication manager
-sn: RM
+cn: Replication Manager
+givenName: Replication
+sn: Manager
 userPassword: supersecret
 passwordExpirationTime: 20380119031407Z
 nsIdleTimeout: 0
@@ -168,8 +173,9 @@ changetype: add
 objectClass: inetorgperson
 objectClass: person
 objectClass: top
-cn: replication manager
-sn: RM
+cn: Replication Manager
+givenName: Replication
+sn: Manager
 userPassword: supersecret
 passwordExpirationTime: 20380119031407Z
 nsIdleTimeout: 0
@@ -358,8 +364,7 @@ nsds5BeginReplicaRefresh: start
         context 'with required parameters' do
           let(:params) do
             {
-              bind_dn: 'cn=Replication Manager,cn=config',
-              bind_dn_pass: 'supersecret',
+              replication_pass: 'supersecret',
               root_dn: 'cn=Directory Manager',
               root_dn_pass: 'supersecure',
               role: 'consumer',
@@ -394,8 +399,7 @@ nsds5BeginReplicaRefresh: start
         context 'with parameter overrides' do
           let(:params) do
             {
-              bind_dn: 'cn=Replication Manager,cn=config',
-              bind_dn_pass: 'supersecret',
+              replication_pass: 'supersecret',
               root_dn: 'cn=Directory Manager',
               root_dn_pass: 'supersecure',
               role: 'consumer',
@@ -432,8 +436,7 @@ nsds5BeginReplicaRefresh: start
         context 'with required parameters' do
           let(:params) do
             {
-              bind_dn: 'cn=Replication Manager,cn=config',
-              bind_dn_pass: 'supersecret',
+              replication_pass: 'supersecret',
               root_dn: 'cn=Directory Manager',
               root_dn_pass: 'supersecure',
               role: 'hub',
@@ -492,8 +495,7 @@ nsds5BeginReplicaRefresh: start
           context 'when initializing consumers' do
             let(:params) do
               {
-                bind_dn: 'cn=Replication Manager,cn=config',
-                bind_dn_pass: 'supersecret',
+                replication_pass: 'supersecret',
                 root_dn: 'cn=Directory Manager',
                 root_dn_pass: 'supersecure',
                 role: 'hub',
@@ -533,8 +535,7 @@ nsds5BeginReplicaRefresh: start
         context 'with parameter overrides' do
           let(:params) do
             {
-              bind_dn: 'cn=Replication Manager,cn=config',
-              bind_dn_pass: 'supersecret',
+              replication_pass: 'supersecret',
               root_dn: 'cn=Directory Manager',
               root_dn_pass: 'supersecure',
               role: 'hub',
@@ -592,8 +593,7 @@ nsds5BeginReplicaRefresh: start
           context 'when initializing consumers' do
             let(:params) do
               {
-                bind_dn: 'cn=Replication Manager,cn=config',
-                bind_dn_pass: 'supersecret',
+                replication_pass: 'supersecret',
                 root_dn: 'cn=Directory Manager',
                 root_dn_pass: 'supersecure',
                 role: 'hub',
@@ -639,8 +639,7 @@ nsds5BeginReplicaRefresh: start
         context 'with required parameters' do
           let(:params) do
             {
-              bind_dn: 'cn=Replication Manager,cn=config',
-              bind_dn_pass: 'supersecret',
+              replication_pass: 'supersecret',
               root_dn: 'cn=Directory Manager',
               root_dn_pass: 'supersecure',
               role: 'supplier',
@@ -754,8 +753,7 @@ nsds5BeginReplicaRefresh: start
           context 'when initializing suppliers' do
             let(:params) do
               {
-                bind_dn: 'cn=Replication Manager,cn=config',
-                bind_dn_pass: 'supersecret',
+                replication_pass: 'supersecret',
                 root_dn: 'cn=Directory Manager',
                 root_dn_pass: 'supersecure',
                 role: 'supplier',
@@ -806,8 +804,7 @@ nsds5BeginReplicaRefresh: start
           context 'when initializing hubs' do
             let(:params) do
               {
-                bind_dn: 'cn=Replication Manager,cn=config',
-                bind_dn_pass: 'supersecret',
+                replication_pass: 'supersecret',
                 root_dn: 'cn=Directory Manager',
                 root_dn_pass: 'supersecure',
                 role: 'supplier',
@@ -858,8 +855,7 @@ nsds5BeginReplicaRefresh: start
           context 'when initializing consumers' do
             let(:params) do
               {
-                bind_dn: 'cn=Replication Manager,cn=config',
-                bind_dn_pass: 'supersecret',
+                replication_pass: 'supersecret',
                 root_dn: 'cn=Directory Manager',
                 root_dn_pass: 'supersecure',
                 role: 'supplier',
@@ -911,8 +907,7 @@ nsds5BeginReplicaRefresh: start
         context 'with parameter overrides' do
           let(:params) do
             {
-              bind_dn: 'cn=Replication Manager,cn=config',
-              bind_dn_pass: 'supersecret',
+              replication_pass: 'supersecret',
               root_dn: 'cn=Directory Manager',
               root_dn_pass: 'supersecure',
               role: 'supplier',
@@ -1022,8 +1017,7 @@ nsds5BeginReplicaRefresh: start
         context 'when initializing suppliers' do
           let(:params) do
             {
-              bind_dn: 'cn=Replication Manager,cn=config',
-              bind_dn_pass: 'supersecret',
+              replication_pass: 'supersecret',
               root_dn: 'cn=Directory Manager',
               root_dn_pass: 'supersecure',
               role: 'supplier',
@@ -1078,8 +1072,7 @@ nsds5BeginReplicaRefresh: start
         context 'when initializing hubs' do
           let(:params) do
             {
-              bind_dn: 'cn=Replication Manager,cn=config',
-              bind_dn_pass: 'supersecret',
+              replication_pass: 'supersecret',
               root_dn: 'cn=Directory Manager',
               root_dn_pass: 'supersecure',
               role: 'supplier',
@@ -1134,8 +1127,7 @@ nsds5BeginReplicaRefresh: start
         context 'when initializing consumers' do
           let(:params) do
             {
-              bind_dn: 'cn=Replication Manager,cn=config',
-              bind_dn_pass: 'supersecret',
+              replication_pass: 'supersecret',
               root_dn: 'cn=Directory Manager',
               root_dn_pass: 'supersecure',
               role: 'supplier',

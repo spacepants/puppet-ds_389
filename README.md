@@ -101,9 +101,8 @@ ds_389::instance { 'example':
   cert_db_pass => 'secret',
   server_id    => $::hostname,
   replication  => {
-    'bind_dn'      => 'cn=Replication Manager,cn=config',
-    'bind_dn_pass' => 'secret',
-    'role'         => 'consumer',
+    'replication_pass' => 'secret',
+    'role'             => 'consumer',
   },
 }
 ```
@@ -122,10 +121,9 @@ ds_389::instance { 'example':
   cert_db_pass => 'secret',
   server_id    => $::hostname,
   replication  => {
-    'bind_dn'      => 'cn=Replication Manager,cn=config',
-    'bind_dn_pass' => 'secret',
-    'role'         => 'hub',
-    'consumers'    => [
+    'replication_pass' => 'secret',
+    'role'             => 'hub',
+    'consumers'        => [
       'consumer1',
       'consumer2',
     ],
@@ -145,18 +143,17 @@ ds_389::instance { 'example':
   cert_db_pass => 'secret',
   server_id    => $::hostname,
   replication  => {
-    'bind_dn'      => 'cn=Replication Manager,cn=config',
-    'bind_dn_pass' => 'secret',
-    'role'         => 'hub',
-    'suppliers'    => [
+    'replication_pass' => 'secret',
+    'role'             => 'hub',
+    'suppliers'        => [
       'supplier1',
       'supplier2',
     ],
-    'hubs'         => [
+    'hubs'             => [
       'hub1',
       'hub2',
     ],
-    'consumers'    => [
+    'consumers'        => [
       'consumer1',
       'consumer2',
     ],
@@ -176,24 +173,23 @@ ds_389::instance { 'example':
   cert_db_pass => 'secret',
   server_id    => $::hostname,
   replication  => {
-    'bind_dn'        => 'cn=Replication Manager,cn=config',
-    'bind_dn_pass'   => 'secret',
-    'role'           => 'hub',
-    'suppliers'      => [
+    'replication_pass' => 'secret',
+    'role'             => 'hub',
+    'suppliers'        => [
       'supplier1',
       'supplier2',
     ],
-    'hubs'           => [
+    'hubs'             => [
       'hub1',
       'hub2',
     ],
-    'consumers'      => [
+    'consumers'        => [
       'consumer1',
       'consumer2',
     ],
-    'init_suppliers' => true,
-    'init_hubs'      => true,
-    'init_consumers' => true,
+    'init_suppliers'   => true,
+    'init_hubs'        => true,
+    'init_consumers'   => true,
   },
 }
 ```
@@ -369,18 +365,19 @@ The following defines are typically called from an instance.
 * `group`: The group of the created ldif file. *Default: $::ds_389::group*
 
 #### ds_389::replication
-* `bind_dn`: The bind dn of the replication user. _Required._
-* `bind_dn_pass`: The bind dn password of the replication user. _Required._
+* `replication_pass`: The bind dn password of the replication user. _Required._
 * `root_dn`: The root dn for configuring replication. _Required._
 * `root_dn_pass`: The root dn password for configuring replication. _Required._
 * `role`: Replication role. Either 'supplier', 'hub', or 'consumer'. _Required._
 * `suffix`: The LDAP suffix to use. _Required._
+* `replication_user`: The name of the replication user. _Default: 'Replication Manager'_
 * `server_host`: The host to use when calling ldapmodify. _Default: $::fqdn_
 * `server_ssl_port`: The port to use when calling ldapmodify. _Default: 636_
 * `user`: The owner of the created ldif file. *Default: $::ds_389::user*
 * `group`: The group of the created ldif file. *Default: $::ds_389::group*
 * `id`: The replica id. _Optional unless declaring a supplier._
 * `purge_delay`: Time in seconds state information stored in replica entries is retained. _Default: 604800_
+* `bind_dn`: The bind dn of the replication user. _Optional._
 * `suppliers`: An array of supplier names to ensure. _Optional._
 * `hubs`: An array of hub names to ensure. _Optional._
 * `consumers`: An array of consumer names to ensure. _Optional._

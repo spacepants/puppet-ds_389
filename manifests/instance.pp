@@ -318,7 +318,8 @@ define ds_389::instance(
   if $replication {
     ::ds_389::replication { $server_id:
       bind_dn             => $replication['bind_dn'],
-      bind_dn_pass        => $replication['bind_dn_pass'],
+      replication_pass    => $replication['replication_pass'],
+      replication_user    => $replication['replication_user'],
       role                => $replication['role'],
       id                  => $replication['id'],
       purge_delay         => $replication['purge_delay'],

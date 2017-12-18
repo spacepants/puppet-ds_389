@@ -64,12 +64,13 @@
 # @param init_consumers Whether to initialize replication for consumers. Default: false
 #
 define ds_389::replication(
-  String                            $bind_dn,
-  Variant[String,Sensitive[String]] $bind_dn_pass,
+  Variant[String,Sensitive[String]] $replication_pass,
   String                            $root_dn,
   Variant[String,Sensitive[String]] $root_dn_pass,
   Enum['supplier','hub','consumer'] $role,
   String                            $suffix,
+  String                            $replication_user    = 'Replication Manager',
+  Optional[String]                  $bind_dn             = undef,
   String                            $server_host         = $::fqdn,
   Integer                           $server_ssl_port     = 636,
   String                            $user                = $::ds_389::user,
@@ -84,6 +85,13 @@ define ds_389::replication(
   Boolean                           $init_hubs           = false,
   Boolean                           $init_consumers      = false,
 ) {
+
+  if $bind_dn {
+    $_bind_dn = $bind_dn
+  }
+  else {
+    $_bind_dn = "cn=${replication_user},cn=config"
+  }
 
   case $role {
     'consumer': {
