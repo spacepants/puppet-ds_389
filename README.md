@@ -346,7 +346,8 @@ The following defines are typically called from an instance.
 
 #### ds_389::modify
 * `server_id`: The 389 ds instance name. _Required._
-* `source`: The source path to use for the ldif file. _Required._
+* `content`: The file content to use for the ldif file. _Required, unless providing the source._
+* `source`: The source path to use for the ldif file. _Required, unless providing the content._
 * `root_dn`: The bind DN to use when calling ldapmodify. _Required._
 * `root_dn_pass`: The password to use when calling ldapmodify. _Required._
 * `server_host`: The host to use when calling ldapmodify. _Default: $::fqdn_
@@ -356,7 +357,8 @@ The following defines are typically called from an instance.
 
 #### ds_389::add
 * `server_id`: The 389 ds instance name. _Required._
-* `source`: The source path to use for the ldif file. _Required._
+* `content`: The file content to use for the ldif file. _Required, unless providing the source._
+* `source`: The source path to use for the ldif file. _Required, unless providing the content._
 * `root_dn`: The bind DN to use when calling ldapadd. _Required._
 * `root_dn_pass`: The password to use when calling ldapadd. _Required._
 * `server_host`: The host to use when calling ldapadd. _Default: $::fqdn_
