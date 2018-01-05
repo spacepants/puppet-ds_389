@@ -35,7 +35,7 @@ describe 'ds_389::add' do
         }
         it {
           is_expected.to contain_exec('Add ldif specadd: specdirectory').with(
-            command: 'cat /etc/dirsrv/slapd-specdirectory/specadd.ldif | ldapadd -h foo.example.com -p 636 -x -D "cn=Directory Manager" -w supersecure ; touch /etc/dirsrv/slapd-specdirectory/specadd.done', # rubocop:disable LineLength
+            command: 'ldapadd -h foo.example.com -p 636 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/specadd.ldif ; touch /etc/dirsrv/slapd-specdirectory/specadd.done', # rubocop:disable LineLength
             path: '/usr/bin:/bin',
             creates: '/etc/dirsrv/slapd-specdirectory/specadd.done',
           ).that_requires('File[/etc/dirsrv/slapd-specdirectory/specadd.ldif]')
@@ -69,7 +69,7 @@ describe 'ds_389::add' do
         }
         it {
           is_expected.to contain_exec('Add ldif specadd: specdirectory').with(
-            command: 'cat /etc/dirsrv/slapd-specdirectory/specadd.ldif | ldapadd -h ldap.test.org -p 1636 -x -D "cn=Directory Manager" -w supersecure ; touch /etc/dirsrv/slapd-specdirectory/specadd.done', # rubocop:disable LineLength
+            command: 'ldapadd -h ldap.test.org -p 1636 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/specadd.ldif ; touch /etc/dirsrv/slapd-specdirectory/specadd.done', # rubocop:disable LineLength
             path: '/usr/bin:/bin',
             creates: '/etc/dirsrv/slapd-specdirectory/specadd.done',
           ).that_requires('File[/etc/dirsrv/slapd-specdirectory/specadd.ldif]')

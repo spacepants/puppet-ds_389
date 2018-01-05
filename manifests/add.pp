@@ -68,7 +68,7 @@ define ds_389::add(
     source  => $source,
   }
   exec { "Add ldif ${name}: ${server_id}":
-    command => "cat /etc/dirsrv/slapd-${server_id}/${name}.ldif | ldapadd -h ${server_host} -p ${server_ssl_port} -x -D \"${root_dn}\" -w ${root_dn_pass} ; touch /etc/dirsrv/slapd-${server_id}/${name}.done", # lint:ignore:140chars
+    command => "ldapadd -h ${server_host} -p ${server_ssl_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${server_id}/${name}.ldif ; touch /etc/dirsrv/slapd-${server_id}/${name}.done", # lint:ignore:140chars
     path    => '/usr/bin:/bin',
     creates => "/etc/dirsrv/slapd-${server_id}/${name}.done",
     require => File["/etc/dirsrv/slapd-${server_id}/${name}.ldif"],

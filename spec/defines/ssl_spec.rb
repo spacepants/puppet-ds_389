@@ -167,7 +167,7 @@ nsslapd-securePort: 1636
 
         it {
           is_expected.to contain_exec('Import ssl ldif: specdirectory').with(
-            command: 'cat /etc/dirsrv/slapd-specdirectory/ssl.ldif | ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure ; touch /etc/dirsrv/slapd-specdirectory/ssl.done', # rubocop:disable LineLength
+            command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/ssl.ldif ; touch /etc/dirsrv/slapd-specdirectory/ssl.done', # rubocop:disable LineLength
             path: '/usr/bin:/bin',
             creates: '/etc/dirsrv/slapd-specdirectory/ssl.done',
           ).that_requires('File[/etc/dirsrv/slapd-specdirectory/ssl.ldif]').that_notifies(
@@ -278,7 +278,7 @@ nsslapd-securePort: 1636
 
         it {
           is_expected.to contain_exec('Import ssl ldif: ldap01').with(
-            command: 'cat /etc/dirsrv/slapd-ldap01/ssl.ldif | ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure ; touch /etc/dirsrv/slapd-ldap01/ssl.done', # rubocop:disable LineLength
+            command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-ldap01/ssl.ldif ; touch /etc/dirsrv/slapd-ldap01/ssl.done', # rubocop:disable LineLength
             path: '/usr/bin:/bin',
             creates: '/etc/dirsrv/slapd-ldap01/ssl.done',
           ).that_requires('File[/etc/dirsrv/slapd-ldap01/ssl.ldif]').that_notifies(
