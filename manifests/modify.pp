@@ -68,7 +68,7 @@ define ds_389::modify(
     source  => $source,
   }
   exec { "Modify ldif ${name}: ${server_id}":
-    command => "cat /etc/dirsrv/slapd-${server_id}/${name}.ldif | ldapmodify -h ${server_host} -p ${server_ssl_port} -x -D \"${root_dn}\" -w ${root_dn_pass} ; touch /etc/dirsrv/slapd-${server_id}/${name}.done", # lint:ignore:140chars
+    command => "ldapmodify -h ${server_host} -p ${server_ssl_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${server_id}/${name}.ldif ; touch /etc/dirsrv/slapd-${server_id}/${name}.done", # lint:ignore:140chars
     path    => '/usr/bin:/bin',
     creates => "/etc/dirsrv/slapd-${server_id}/${name}.done",
     require => File["/etc/dirsrv/slapd-${server_id}/${name}.ldif"],
