@@ -34,7 +34,7 @@ replace: nsslapd-security
 nsslapd-security: on
 -
 replace: nsslapd-minssf
-nsslapd-minssf: 128
+nsslapd-minssf: 0
 -
 replace: nsslapd-secureport
 nsslapd-securePort: 636
@@ -68,7 +68,7 @@ replace: nsslapd-security
 nsslapd-security: on
 -
 replace: nsslapd-minssf
-nsslapd-minssf: 128
+nsslapd-minssf: 0
 -
 replace: nsslapd-secureport
 nsslapd-securePort: 636
@@ -270,6 +270,7 @@ nsslapd-securePort: 1636
             server_ssl_port: 1636,
             user: 'custom_user',
             group: 'custom_group',
+            minssf: 128,
             ssl_version_min: 'TLS1.2',
           }
         end

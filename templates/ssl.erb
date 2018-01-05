@@ -29,7 +29,7 @@ replace: nsslapd-security
 nsslapd-security: on
 -
 replace: nsslapd-minssf
-nsslapd-minssf: 128
+nsslapd-minssf: <%= @minssf %>
 -
 replace: nsslapd-secureport
 nsslapd-securePort: <%= @server_ssl_port%>

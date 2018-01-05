@@ -26,6 +26,7 @@
 # @param subject_alt_names An array of subject alt names, if using self-signed certificates. Optional.
 # @param replication A replication config hash. See replication.pp. Optional.
 # @param ssl An ssl config hash. See ssl.pp. Optional.
+# @param minssf The minimum security strength for connections. Optional.
 # @param ssl_version_min The minimum TLS version the instance should support. Optional.
 # @param schema_extensions A hash of schemas to ensure. See schema.pp. Optional.
 # @param modify_ldifs A hash of ldif modify files. See modify.pp. Optional. Optional.
@@ -46,6 +47,7 @@ define ds_389::instance(
   Optional[Array]                   $subject_alt_names     = undef,
   Optional[Hash]                    $replication           = undef,
   Optional[Hash]                    $ssl                   = undef,
+  Optional[Integer]                 $minssf                = undef,
   Optional[String]                  $ssl_version_min       = undef,
   Optional[Hash]                    $schema_extensions     = undef,
   Optional[Hash]                    $modify_ldifs          = undef,
@@ -307,6 +309,7 @@ define ds_389::instance(
     server_port     => $server_port,
     user            => $user,
     group           => $group,
+    minssf          => $minssf,
     ssl_version_min => $ssl_version_min,
     notify          => Service["dirsrv@${server_id}"],
   }
