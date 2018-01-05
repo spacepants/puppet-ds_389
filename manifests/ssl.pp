@@ -19,6 +19,7 @@
 # @param server_ssl_port The port to use when calling ldapmodify. Default: 636
 # @param user The owner of the created ldif file. Default: $::ds_389::user
 # @param group The group of the created ldif file. Default: $::ds_389::group
+# @param minssf The minimum security strength for connections. Default: 0
 # @param ssl_version_min The minimum TLS version to allow. Default: 'TLS1.1'
 #
 define ds_389::ssl(
@@ -30,6 +31,7 @@ define ds_389::ssl(
   Integer                           $server_ssl_port = 636,
   String                            $user            = $::ds_389::user,
   String                            $group           = $::ds_389::group,
+  Integer                           $minssf          = 0,
   String                            $ssl_version_min = 'TLS1.1',
 ) {
   include ::ds_389

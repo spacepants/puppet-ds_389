@@ -974,6 +974,7 @@ describe 'ds_389::instance' do
             server_port: 1389,
             user: 'custom_user',
             group: 'custom_group',
+            minssf: '0',
             ssl_version_min: 'TLS1.1',
           )
         }

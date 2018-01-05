@@ -59,11 +59,13 @@ ds_389::instance { 'example':
 
 The primary resource for configuring 389 DS is the `ds_389::instance` define.
 
-In our previous example, we created an instance with the server ID set to the hostname of the node. For a node with a hostname of `foo`, this would create an instance at `/etc/dirsrv/slapd-foo` that listens on the default ports of 389 (with StartTLS) and 636 (for SSL).
+In our previous example, we created an instance with the server ID set to the hostname of the node. For a node with a hostname of `foo`, this would create an instance at `/etc/dirsrv/slapd-foo` that listens on the default ports of 389 and 636 (for SSL).
 
 #### SSL
 
 If you have existing SSL certificates you'd like to use, you'd pass them in to the instance with the `ssl` parameter. It expects a hash with paths (either local file paths on the node or a puppet:/// path) for the PEM files for your certificate, key, and CA bundle. It also requires the certificate nickname for the cert and every CA in the bundle. (`pk12util` sets the nickname for the certificate to the friendly name of the cert in the pkcs12 bundle, and the nickname for each ca cert to "${the common name(cn) of the ca cert subject} - ${the organization(o) of the cert issuer}".)
+
+To require StartTLS for non-SSL connections, you can pass in the `minssf` param to specify the minimum required encryption.
 
 ```puppet
 ds_389::instance { 'example':
@@ -72,6 +74,7 @@ ds_389::instance { 'example':
   suffix       => 'dc=example,dc=com',
   cert_db_pass => 'secret',
   server_id    => $::hostname,
+  minssf       => 128,
   ssl          => {
     'cert_path'      => 'puppet:///path/to/ssl_cert.pem',
     'key_path'       => 'puppet:///path/to/ssl_key.pem',
@@ -338,6 +341,7 @@ The following defines are typically called from an instance.
 * `subject_alt_names`: An array of subject alt names, if using self-signed certificates. _Optional._
 * `replication`: A replication config hash. See replication.pp. _Optional._
 * `ssl`: An ssl config hash. See ssl.pp. _Optional._
+* `minssf`: The minimum security strength for connections. _Optional._
 * `ssl_version_min`: The minimum TLS version the instance should support. _Optional._
 * `schema_extensions`: A hash of schemas to ensure. See schema.pp. _Optional._
 * `modify_ldifs`: A hash of ldif modify files. See modify.pp. Optional. _Optional._
@@ -407,6 +411,7 @@ The following defines are typically called from an instance.
 * `server_ssl_port`: The port to use when calling ldapmodify. _Default: 636_
 * `user`: The owner of the created ldif file. *Default: $::ds_389::user*
 * `group`: The group of the created ldif file. *Default: $::ds_389::group*
+* `minssf`: The minimum security strength for connections. _Default: 0_
 * `ssl_version_min`: The minimum TLS version to allow. _Default: 'TLS1.1'_
 
 ## Limitations
