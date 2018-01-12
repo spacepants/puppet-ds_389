@@ -5,7 +5,7 @@ objectClass: nsds5ReplicationAgreement
 cn: <%= @replica %>Agreement
 nsds5ReplicaHost: <%= @replica %>
 nsds5ReplicaPort: <%= @replica_port %>
-nsds5ReplicaTransportInfo: SSL
+nsds5ReplicaTransportInfo: <%= @replica_transport %>
 nsds5ReplicaBindDN: <%= @_bind_dn %>
 nsds5ReplicaBindMethod: SIMPLE
 nsds5ReplicaCredentials: <%= @replication_pass %>
