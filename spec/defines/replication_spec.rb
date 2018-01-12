@@ -209,7 +209,7 @@ objectClass: top
 objectClass: nsds5ReplicationAgreement
 cn: consumer1Agreement
 nsds5ReplicaHost: consumer1
-nsds5ReplicaPort: 636
+nsds5ReplicaPort: 389
 nsds5ReplicaTransportInfo: LDAP
 nsds5ReplicaBindDN: cn=Replication Manager,cn=config
 nsds5ReplicaBindMethod: SIMPLE
@@ -243,7 +243,7 @@ objectClass: top
 objectClass: nsds5ReplicationAgreement
 cn: hub1Agreement
 nsds5ReplicaHost: hub1
-nsds5ReplicaPort: 636
+nsds5ReplicaPort: 389
 nsds5ReplicaTransportInfo: LDAP
 nsds5ReplicaBindDN: cn=Replication Manager,cn=config
 nsds5ReplicaBindMethod: SIMPLE
@@ -277,7 +277,7 @@ objectClass: top
 objectClass: nsds5ReplicationAgreement
 cn: supplier1Agreement
 nsds5ReplicaHost: supplier1
-nsds5ReplicaPort: 636
+nsds5ReplicaPort: 389
 nsds5ReplicaTransportInfo: LDAP
 nsds5ReplicaBindDN: cn=Replication Manager,cn=config
 nsds5ReplicaBindMethod: SIMPLE
