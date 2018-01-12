@@ -16,7 +16,7 @@
 # @param root_dn_pass The password to use when calling ldapmodify. Required.
 # @param server_host The host to use when calling ldapmodify. Default: $::fqdn
 # @param server_port The port to use when calling ldapmodify. Default: 389
-# @param server_ssl_port The port to use when calling ldapmodify. Default: 636
+# @param server_ssl_port The port to use for SSL traffic. Default: 636
 # @param user The owner of the created ldif file. Default: $::ds_389::user
 # @param group The group of the created ldif file. Default: $::ds_389::group
 # @param minssf The minimum security strength for connections. Default: 0

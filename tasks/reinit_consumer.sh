@@ -7,4 +7,4 @@ replace: nsds5BeginReplicaRefresh
 nsds5BeginReplicaRefresh: start
 EOM
 
-echo "$REINIT" | ldapmodify -h $PT_server_host -p $PT_server_ssl_port -x -D "${PT_root_dn}" -w $PT_root_dn_pass
+echo "$REINIT" | ldapmodify -h $PT_server_host -p $PT_server_port -x -D "${PT_root_dn}" -w $PT_root_dn_pass

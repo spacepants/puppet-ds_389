@@ -333,11 +333,12 @@ define ds_389::instance(
       init_suppliers      => $replication['init_suppliers'],
       init_hubs           => $replication['init_hubs'],
       init_consumers      => $replication['init_consumers'],
+      replica_port        => $replication['replica_port'],
       root_dn             => $root_dn,
       root_dn_pass        => $root_dn_pass,
       suffix              => $suffix,
       server_host         => $server_host,
-      server_ssl_port     => $server_ssl_port,
+      server_port         => $server_port,
       user                => $user,
       group               => $group,
       require             => Service["dirsrv@${server_id}"],
@@ -353,17 +354,17 @@ define ds_389::instance(
   if $modify_ldifs {
     $modify_ldifs.each |$filename, $source| {
       ::ds_389::modify { $filename:
-        server_id       => $server_id,
-        root_dn         => $root_dn,
-        root_dn_pass    => $root_dn_pass,
-        server_host     => $server_host,
-        server_ssl_port => $server_ssl_port,
-        source          => $source,
-        user            => $user,
-        group           => $group,
-        tag             => "${server_id}_modify",
-        require         => Anchor["${name}_ldif_modify"],
-        before          => Anchor["${name}_ldif_add"],
+        server_id    => $server_id,
+        root_dn      => $root_dn,
+        root_dn_pass => $root_dn_pass,
+        server_host  => $server_host,
+        server_port  => $server_port,
+        source       => $source,
+        user         => $user,
+        group        => $group,
+        tag          => "${server_id}_modify",
+        require      => Anchor["${name}_ldif_modify"],
+        before       => Anchor["${name}_ldif_add"],
       }
     }
   }
@@ -374,17 +375,17 @@ define ds_389::instance(
   if $add_ldifs {
     $add_ldifs.each |$filename, $source| {
       ::ds_389::add { $filename:
-        server_id       => $server_id,
-        root_dn         => $root_dn,
-        root_dn_pass    => $root_dn_pass,
-        server_host     => $server_host,
-        server_ssl_port => $server_ssl_port,
-        source          => $source,
-        user            => $user,
-        group           => $group,
-        tag             => "${server_id}_add",
-        require         => Anchor["${name}_ldif_add"],
-        before          => Anchor["${name}_ldif_base_load"],
+        server_id    => $server_id,
+        root_dn      => $root_dn,
+        root_dn_pass => $root_dn_pass,
+        server_host  => $server_host,
+        server_port  => $server_port,
+        source       => $source,
+        user         => $user,
+        group        => $group,
+        tag          => "${server_id}_add",
+        require      => Anchor["${name}_ldif_add"],
+        before       => Anchor["${name}_ldif_base_load"],
       }
     }
   }
@@ -395,16 +396,16 @@ define ds_389::instance(
   if $base_load_ldifs {
     $base_load_ldifs.each |$filename, $source| {
       ::ds_389::add { $filename:
-        server_id       => $server_id,
-        root_dn         => $root_dn,
-        root_dn_pass    => $root_dn_pass,
-        server_host     => $server_host,
-        server_ssl_port => $server_ssl_port,
-        source          => $source,
-        user            => $user,
-        group           => $group,
-        tag             => "${server_id}_base_load",
-        require         => Anchor["${name}_ldif_base_load"],
+        server_id    => $server_id,
+        root_dn      => $root_dn,
+        root_dn_pass => $root_dn_pass,
+        server_host  => $server_host,
+        server_port  => $server_port,
+        source       => $source,
+        user         => $user,
+        group        => $group,
+        tag          => "${server_id}_base_load",
+        require      => Anchor["${name}_ldif_base_load"],
       }
     }
   }
