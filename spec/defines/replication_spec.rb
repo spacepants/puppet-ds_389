@@ -210,7 +210,7 @@ objectClass: nsds5ReplicationAgreement
 cn: consumer1Agreement
 nsds5ReplicaHost: consumer1
 nsds5ReplicaPort: 636
-nsds5ReplicaTransportInfo: SSL
+nsds5ReplicaTransportInfo: LDAP
 nsds5ReplicaBindDN: cn=Replication Manager,cn=config
 nsds5ReplicaBindMethod: SIMPLE
 nsds5ReplicaCredentials: supersecret
@@ -244,7 +244,7 @@ objectClass: nsds5ReplicationAgreement
 cn: hub1Agreement
 nsds5ReplicaHost: hub1
 nsds5ReplicaPort: 636
-nsds5ReplicaTransportInfo: SSL
+nsds5ReplicaTransportInfo: LDAP
 nsds5ReplicaBindDN: cn=Replication Manager,cn=config
 nsds5ReplicaBindMethod: SIMPLE
 nsds5ReplicaCredentials: supersecret
@@ -278,7 +278,7 @@ objectClass: nsds5ReplicationAgreement
 cn: supplier1Agreement
 nsds5ReplicaHost: supplier1
 nsds5ReplicaPort: 636
-nsds5ReplicaTransportInfo: SSL
+nsds5ReplicaTransportInfo: LDAP
 nsds5ReplicaBindDN: cn=Replication Manager,cn=config
 nsds5ReplicaBindMethod: SIMPLE
 nsds5ReplicaCredentials: supersecret
@@ -407,6 +407,7 @@ nsds5BeginReplicaRefresh: start
               server_host: 'ldap.test.org',
               server_port: 1389,
               replica_port: 1636,
+              replica_transport: 'SSL',
               user: 'custom_user',
               group: 'custom_group',
             }
@@ -544,6 +545,7 @@ nsds5BeginReplicaRefresh: start
               server_host: 'ldap.test.org',
               server_port: 1389,
               replica_port: 1636,
+              replica_transport: 'SSL',
               user: 'custom_user',
               group: 'custom_group',
               consumers: %w[consumer1 specdirectory],
@@ -603,6 +605,7 @@ nsds5BeginReplicaRefresh: start
                 server_host: 'ldap.test.org',
                 server_port: 1389,
                 replica_port: 1636,
+                replica_transport: 'SSL',
                 user: 'custom_user',
                 group: 'custom_group',
                 consumers: ['consumer1'],
@@ -918,6 +921,7 @@ nsds5BeginReplicaRefresh: start
               server_host: 'ldap.test.org',
               server_port: 1389,
               replica_port: 1636,
+              replica_transport: 'SSL',
               user: 'custom_user',
               group: 'custom_group',
               id: 100,
@@ -1029,6 +1033,7 @@ nsds5BeginReplicaRefresh: start
               server_host: 'ldap.test.org',
               server_port: 1389,
               replica_port: 1636,
+              replica_transport: 'SSL',
               user: 'custom_user',
               group: 'custom_group',
               id: 100,
@@ -1085,6 +1090,7 @@ nsds5BeginReplicaRefresh: start
               server_host: 'ldap.test.org',
               server_port: 1389,
               replica_port: 1636,
+              replica_transport: 'SSL',
               user: 'custom_user',
               group: 'custom_group',
               id: 100,
@@ -1141,6 +1147,7 @@ nsds5BeginReplicaRefresh: start
               server_host: 'ldap.test.org',
               server_port: 1389,
               replica_port: 1636,
+              replica_transport: 'SSL',
               user: 'custom_user',
               group: 'custom_group',
               id: 100,

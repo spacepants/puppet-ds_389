@@ -52,6 +52,7 @@
 # @param server_host The host to use when calling ldapmodify. Default: $::fqdn
 # @param server_port The port to use when calling ldapmodify. Default: 389
 # @param replica_port The port to use for replication. Default: 636
+# @param replica_transport The transport type to use for replication. Default: 'LDAP'
 # @param user The owner of the created ldif file. Default: $::ds_389::user
 # @param group The group of the created ldif file. Default: $::ds_389::group
 # @param id The replica id. Optional unless declaring a supplier.
@@ -75,6 +76,7 @@ define ds_389::replication(
   String                            $server_host         = $::fqdn,
   Integer                           $server_port         = 389,
   Integer                           $replica_port        = 636,
+  Enum['LDAP','SSL']                $replica_transport   = 'LDAP',
   String                            $user                = $::ds_389::user,
   String                            $group               = $::ds_389::group,
   Optional[Integer]                 $id                  = undef,

@@ -334,6 +334,7 @@ define ds_389::instance(
       init_hubs           => $replication['init_hubs'],
       init_consumers      => $replication['init_consumers'],
       replica_port        => $replication['replica_port'],
+      replica_transport   => $replication['replica_transport'],
       root_dn             => $root_dn,
       root_dn_pass        => $root_dn_pass,
       suffix              => $suffix,
