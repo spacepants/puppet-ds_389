@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
 
+## Supported Release 1.1.2
+### Summary
+This release adds the ability to customize nsds5ReplicaTransportInfo for replication. It defaults to 'LDAP', but can be set to 'SSL' via the `replica_transport` param.
+
+### Changed
+* Parameterize replication transport.
+* ldapadd / ldapmodify commands now default to port 389 instead of 636.
+
 ## Supported Release 1.1.1
 ### Summary
 This release adds the ability to specify the minssf setting that controls StartTLS for non-SSL connections.

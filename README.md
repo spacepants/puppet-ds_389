@@ -355,7 +355,7 @@ The following defines are typically called from an instance.
 * `root_dn`: The bind DN to use when calling ldapmodify. _Required._
 * `root_dn_pass`: The password to use when calling ldapmodify. _Required._
 * `server_host`: The host to use when calling ldapmodify. _Default: $::fqdn_
-* `server_ssl_port`: The port to use when calling ldapmodify. _Default: 636_
+* `server_port`: The port to use when calling ldapmodify. _Default: 389_
 * `user`: The owner of the created ldif file. *Default: $::ds_389::user*
 * `group`: The group of the created ldif file. *Default: $::ds_389::group*
 
@@ -366,7 +366,7 @@ The following defines are typically called from an instance.
 * `root_dn`: The bind DN to use when calling ldapadd. _Required._
 * `root_dn_pass`: The password to use when calling ldapadd. _Required._
 * `server_host`: The host to use when calling ldapadd. _Default: $::fqdn_
-* `server_ssl_port`: The port to use when calling ldapadd. _Default: 636_
+* `server_port`: The port to use when calling ldapadd. _Default: 389_
 * `user`: The owner of the created ldif file. *Default: $::ds_389::user*
 * `group`: The group of the created ldif file. *Default: $::ds_389::group*
 
@@ -378,7 +378,9 @@ The following defines are typically called from an instance.
 * `suffix`: The LDAP suffix to use. _Required._
 * `replication_user`: The name of the replication user. _Default: 'Replication Manager'_
 * `server_host`: The host to use when calling ldapmodify. _Default: $::fqdn_
-* `server_ssl_port`: The port to use when calling ldapmodify. _Default: 636_
+* `server_port`: The port to use when calling ldapmodify. _Default: 389_
+* `replica_port`: The port to use for replication. _Default: 389_
+* `replica_transport`: The transport type to use for replication. _Default: LDAP_
 * `user`: The owner of the created ldif file. *Default: $::ds_389::user*
 * `group`: The group of the created ldif file. *Default: $::ds_389::group*
 * `id`: The replica id. _Optional unless declaring a supplier._
@@ -408,7 +410,7 @@ The following defines are typically called from an instance.
 * `root_dn_pass`: The password to use when calling ldapmodify. _Required._
 * `server_host`: The host to use when calling ldapmodify. _Default: $::fqdn_
 * `server_port`: The port to use when calling ldapmodify. _Default: 389_
-* `server_ssl_port`: The port to use when calling ldapmodify. _Default: 636_
+* `server_ssl_port`: The port to use for SSL traffic. _Default: 636_
 * `user`: The owner of the created ldif file. *Default: $::ds_389::user*
 * `group`: The group of the created ldif file. *Default: $::ds_389::group*
 * `minssf`: The minimum security strength for connections. _Default: 0_
