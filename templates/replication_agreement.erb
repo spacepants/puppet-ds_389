@@ -4,7 +4,7 @@ objectClass: top
 objectClass: nsds5ReplicationAgreement
 cn: <%= @replica %>Agreement
 nsds5ReplicaHost: <%= @replica %>
-nsds5ReplicaPort: <%= @server_ssl_port %>
+nsds5ReplicaPort: <%= @replica_port %>
 nsds5ReplicaTransportInfo: SSL
 nsds5ReplicaBindDN: <%= @_bind_dn %>
 nsds5ReplicaBindMethod: SIMPLE

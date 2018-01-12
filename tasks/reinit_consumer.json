@@ -14,7 +14,7 @@
       "description": "Host to connect to",
       "type": "String[1]"
     },
-    "server_ssl_port": {
+    "server_port": {
       "description": "SSL port to connect to",
       "type": "Integer"
     },
