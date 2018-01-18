@@ -18,6 +18,14 @@
       "description": "SSL port to connect to",
       "type": "Integer"
     },
+    "protocol": {
+      "description": "Connection protocol",
+      "type": "String[1]"
+    },
+    "starttls": {
+      "description": "Connect with StartTLS",
+      "type": "Boolean"
+    },
     "root_dn": {
       "description": "The root dn to bind as",
       "type": "String[1]"
