@@ -39,6 +39,8 @@
 # @param source The source path to use for the ldif file. Required, unless providing the content.
 # @param server_host The host to use when calling ldapadd. Default: $::fqdn
 # @param server_port The port to use when calling ldapadd. Default: 389
+# @param protocol The protocol to use when calling ldapadd. Default: 'ldap'
+# @param starttls Whether to use StartTLS when calling ldapadd. Default: false
 # @param user The owner of the created ldif file. Default: $::ds_389::user
 # @param group The group of the created ldif file. Default: $::ds_389::group
 #
@@ -50,6 +52,8 @@ define ds_389::add(
   Optional[String]                  $source       = undef,
   String                            $server_host  = $::fqdn,
   Integer                           $server_port  = 389,
+  Enum['ldap','ldaps']              $protocol     = 'ldap',
+  Boolean                           $starttls     = false,
   String                            $user         = $::ds_389::user,
   String                            $group        = $::ds_389::group,
 ) {
@@ -57,6 +61,13 @@ define ds_389::add(
 
   if !$content and !$source {
     fail('ds_389::add requires a value for either content or source')
+  }
+
+  if $starttls {
+    $_opts = 'ZxH'
+  }
+  else {
+    $_opts = 'xH'
   }
 
   file { "/etc/dirsrv/slapd-${server_id}/${name}.ldif":
@@ -68,7 +79,7 @@ define ds_389::add(
     source  => $source,
   }
   exec { "Add ldif ${name}: ${server_id}":
-    command => "ldapadd -h ${server_host} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${server_id}/${name}.ldif ; touch /etc/dirsrv/slapd-${server_id}/${name}.done", # lint:ignore:140chars
+    command => "ldapadd -${_opts} ${protocol}://${server_host}:${server_port} -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${server_id}/${name}.ldif ; touch /etc/dirsrv/slapd-${server_id}/${name}.done", # lint:ignore:140chars
     path    => '/usr/bin:/bin',
     creates => "/etc/dirsrv/slapd-${server_id}/${name}.done",
     require => File["/etc/dirsrv/slapd-${server_id}/${name}.ldif"],

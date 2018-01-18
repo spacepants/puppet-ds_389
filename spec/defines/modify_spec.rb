@@ -35,7 +35,70 @@ describe 'ds_389::modify' do
         }
         it {
           is_expected.to contain_exec('Modify ldif specmodify: specdirectory').with(
-            command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/specmodify.ldif ; touch /etc/dirsrv/slapd-specdirectory/specmodify.done', # rubocop:disable LineLength
+            command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/specmodify.ldif ; touch /etc/dirsrv/slapd-specdirectory/specmodify.done', # rubocop:disable LineLength
+            path: '/usr/bin:/bin',
+            creates: '/etc/dirsrv/slapd-specdirectory/specmodify.done',
+          ).that_requires('File[/etc/dirsrv/slapd-specdirectory/specmodify.ldif]')
+        }
+      end
+
+      context 'when using starttls' do
+        let(:params) do
+          {
+            server_id: 'specdirectory',
+            source: 'puppet:///specfiles/specmodify.ldif',
+            root_dn: 'cn=Directory Manager',
+            root_dn_pass: 'supersecure',
+            starttls: true,
+          }
+        end
+
+        it { is_expected.to compile }
+
+        it {
+          is_expected.to contain_file('/etc/dirsrv/slapd-specdirectory/specmodify.ldif').with(
+            ensure: 'file',
+            mode: '0440',
+            owner: 'dirsrv',
+            group: 'dirsrv',
+            source: 'puppet:///specfiles/specmodify.ldif',
+          )
+        }
+        it {
+          is_expected.to contain_exec('Modify ldif specmodify: specdirectory').with(
+            command: 'ldapmodify -ZxH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/specmodify.ldif ; touch /etc/dirsrv/slapd-specdirectory/specmodify.done', # rubocop:disable LineLength
+            path: '/usr/bin:/bin',
+            creates: '/etc/dirsrv/slapd-specdirectory/specmodify.done',
+          ).that_requires('File[/etc/dirsrv/slapd-specdirectory/specmodify.ldif]')
+        }
+      end
+
+      context 'when using ldaps' do
+        let(:params) do
+          {
+            server_id: 'specdirectory',
+            source: 'puppet:///specfiles/specmodify.ldif',
+            root_dn: 'cn=Directory Manager',
+            root_dn_pass: 'supersecure',
+            server_port: 636,
+            protocol: 'ldaps',
+          }
+        end
+
+        it { is_expected.to compile }
+
+        it {
+          is_expected.to contain_file('/etc/dirsrv/slapd-specdirectory/specmodify.ldif').with(
+            ensure: 'file',
+            mode: '0440',
+            owner: 'dirsrv',
+            group: 'dirsrv',
+            source: 'puppet:///specfiles/specmodify.ldif',
+          )
+        }
+        it {
+          is_expected.to contain_exec('Modify ldif specmodify: specdirectory').with(
+            command: 'ldapmodify -xH ldaps://foo.example.com:636 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/specmodify.ldif ; touch /etc/dirsrv/slapd-specdirectory/specmodify.done', # rubocop:disable LineLength
             path: '/usr/bin:/bin',
             creates: '/etc/dirsrv/slapd-specdirectory/specmodify.done',
           ).that_requires('File[/etc/dirsrv/slapd-specdirectory/specmodify.ldif]')
@@ -69,7 +132,7 @@ describe 'ds_389::modify' do
         }
         it {
           is_expected.to contain_exec('Modify ldif specmodify: specdirectory').with(
-            command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/specmodify.ldif ; touch /etc/dirsrv/slapd-specdirectory/specmodify.done', # rubocop:disable LineLength
+            command: 'ldapmodify -xH ldap://ldap.test.org:1389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/specmodify.ldif ; touch /etc/dirsrv/slapd-specdirectory/specmodify.done', # rubocop:disable LineLength
             path: '/usr/bin:/bin',
             creates: '/etc/dirsrv/slapd-specdirectory/specmodify.done',
           ).that_requires('File[/etc/dirsrv/slapd-specdirectory/specmodify.ldif]')

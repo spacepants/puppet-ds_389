@@ -284,6 +284,7 @@ describe 'ds_389::instance' do
             server_port: 389,
             user: 'dirsrv',
             group: 'dirsrv',
+            minssf: 0,
             ssl_version_min: 'TLS1.1',
           )
         }
@@ -470,6 +471,7 @@ describe 'ds_389::instance' do
               suffix: 'dc=example,dc=com',
               server_host: 'foo.example.com',
               server_port: 389,
+              starttls: false,
               user: 'dirsrv',
               group: 'dirsrv',
             ).that_requires('Ds_389::Ssl[specdirectory]')
@@ -508,6 +510,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'foo.example.com',
               server_port: 389,
+              starttls: false,
               source: 'puppet:///specfiles/specmodify1.ldif',
               user: 'dirsrv',
               group: 'dirsrv',
@@ -522,6 +525,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'foo.example.com',
               server_port: 389,
+              starttls: false,
               source: 'puppet:///specfiles/specmodify2.ldif',
               user: 'dirsrv',
               group: 'dirsrv',
@@ -537,6 +541,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'foo.example.com',
               server_port: 389,
+              starttls: false,
               source: 'puppet:///specfiles/specadd1.ldif',
               user: 'dirsrv',
               group: 'dirsrv',
@@ -551,6 +556,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'foo.example.com',
               server_port: 389,
+              starttls: false,
               source: 'puppet:///specfiles/specadd2.ldif',
               user: 'dirsrv',
               group: 'dirsrv',
@@ -566,6 +572,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'foo.example.com',
               server_port: 389,
+              starttls: false,
               source: 'puppet:///specfiles/specbaseload1.ldif',
               user: 'dirsrv',
               group: 'dirsrv',
@@ -580,6 +587,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'foo.example.com',
               server_port: 389,
+              starttls: false,
               source: 'puppet:///specfiles/specbaseload2.ldif',
               user: 'dirsrv',
               group: 'dirsrv',
@@ -691,6 +699,7 @@ describe 'ds_389::instance' do
               server_port: 389,
               user: 'custom_user',
               group: 'custom_group',
+              minssf: 0,
               ssl_version_min: 'TLS1.1',
             )
           }
@@ -710,6 +719,7 @@ describe 'ds_389::instance' do
             server_host: 'ldap.test.org',
             server_port: 1389,
             server_ssl_port: 1636,
+            minssf: 128,
             subject_alt_names: ['ldap01.test.org', 'ldap02.test.org'],
           }
         end
@@ -974,7 +984,7 @@ describe 'ds_389::instance' do
             server_port: 1389,
             user: 'custom_user',
             group: 'custom_group',
-            minssf: '0',
+            minssf: 128,
             ssl_version_min: 'TLS1.1',
           )
         }
@@ -1159,6 +1169,7 @@ describe 'ds_389::instance' do
               server_port: 1389,
               server_ssl_port: 1636,
               subject_alt_names: ['ldap01.test.org', 'ldap02.test.org'],
+              minssf: 128,
               replication: {
                 'bind_dn' => 'cn=Replication Manager,cn=config',
                 'replication_pass' => 'supersecret',
@@ -1178,6 +1189,7 @@ describe 'ds_389::instance' do
               suffix: 'dc=test,dc=org',
               server_host: 'ldap.test.org',
               server_port: 1389,
+              starttls: true,
               user: 'custom_user',
               group: 'custom_group',
             ).that_requires('Ds_389::Ssl[ldap01]')
@@ -1204,6 +1216,7 @@ describe 'ds_389::instance' do
               server_port: 1389,
               server_ssl_port: 1636,
               subject_alt_names: ['ldap01.test.org', 'ldap02.test.org'],
+              minssf: 128,
               modify_ldifs: {
                 'specmodify1' => 'puppet:///specfiles/specmodify1.ldif',
                 'specmodify2' => 'puppet:///specfiles/specmodify2.ldif',
@@ -1232,6 +1245,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'ldap.test.org',
               server_port: 1389,
+              starttls: true,
               source: 'puppet:///specfiles/specmodify1.ldif',
               user: 'custom_user',
               group: 'custom_group',
@@ -1246,6 +1260,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'ldap.test.org',
               server_port: 1389,
+              starttls: true,
               source: 'puppet:///specfiles/specmodify2.ldif',
               user: 'custom_user',
               group: 'custom_group',
@@ -1261,6 +1276,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'ldap.test.org',
               server_port: 1389,
+              starttls: true,
               source: 'puppet:///specfiles/specadd1.ldif',
               user: 'custom_user',
               group: 'custom_group',
@@ -1275,6 +1291,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'ldap.test.org',
               server_port: 1389,
+              starttls: true,
               source: 'puppet:///specfiles/specadd2.ldif',
               user: 'custom_user',
               group: 'custom_group',
@@ -1290,6 +1307,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'ldap.test.org',
               server_port: 1389,
+              starttls: true,
               source: 'puppet:///specfiles/specbaseload1.ldif',
               user: 'custom_user',
               group: 'custom_group',
@@ -1304,6 +1322,7 @@ describe 'ds_389::instance' do
               root_dn_pass: 'supersecure',
               server_host: 'ldap.test.org',
               server_port: 1389,
+              starttls: true,
               source: 'puppet:///specfiles/specbaseload2.ldif',
               user: 'custom_user',
               group: 'custom_group',

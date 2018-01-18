@@ -51,6 +51,8 @@
 # @param suffix The LDAP suffix to use. Required.
 # @param server_host The host to use when calling ldapmodify. Default: $::fqdn
 # @param server_port The port to use when calling ldapmodify. Default: 389
+# @param protocol The protocol to use when calling ldapmodify. Default: 'ldap'
+# @param starttls Whether to use StartTLS when calling ldapmodify. Default: false
 # @param replica_port The port to use for replication. Default: 389
 # @param replica_transport The transport type to use for replication. Default: 'LDAP'
 # @param user The owner of the created ldif file. Default: $::ds_389::user
@@ -75,8 +77,10 @@ define ds_389::replication(
   Optional[String]                  $bind_dn             = undef,
   String                            $server_host         = $::fqdn,
   Integer                           $server_port         = 389,
+  Enum['ldap','ldaps']              $protocol            = 'ldap',
+  Boolean                           $starttls            = false,
   Integer                           $replica_port        = 389,
-  Enum['LDAP','SSL']                $replica_transport   = 'LDAP',
+  Enum['LDAP','SSL','TLS']          $replica_transport   = 'LDAP',
   String                            $user                = $::ds_389::user,
   String                            $group               = $::ds_389::group,
   Optional[Integer]                 $id                  = undef,
@@ -95,6 +99,13 @@ define ds_389::replication(
   }
   else {
     $_bind_dn = "cn=${replication_user},cn=config"
+  }
+
+  if $starttls {
+    $_opts = 'ZxH'
+  }
+  else {
+    $_opts = 'xH'
   }
 
   case $role {
@@ -117,7 +128,7 @@ define ds_389::replication(
               content => template('ds_389/replication_agreement.erb'),
             }
             exec { "Create replication agreement for consumer ${replica}: ${name}":
-              command => "ldapmodify -h ${server_host} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/consumer_${replica}.ldif ; touch /etc/dirsrv/slapd-${name}/consumer_${replica}.done", # lint:ignore:140chars
+              command => "ldapmodify -${_opts} ${protocol}://${server_host}:${server_port} -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/consumer_${replica}.ldif ; touch /etc/dirsrv/slapd-${name}/consumer_${replica}.done", # lint:ignore:140chars
               path    => '/usr/bin:/bin',
               creates => "/etc/dirsrv/slapd-${name}/consumer_${replica}.done",
               require => [
@@ -135,7 +146,7 @@ define ds_389::replication(
                 content => template('ds_389/replication_init.erb'),
               }
               exec { "Initialize consumer ${replica}: ${name}":
-                command => "ldapmodify -h ${server_host} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/consumer_${replica}_init.ldif ; touch /etc/dirsrv/slapd-${name}/consumer_${replica}_init.done", # lint:ignore:140chars
+                command => "ldapmodify -${_opts} ${protocol}://${server_host}:${server_port} -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/consumer_${replica}_init.ldif ; touch /etc/dirsrv/slapd-${name}/consumer_${replica}_init.done", # lint:ignore:140chars
                 path    => '/usr/bin:/bin',
                 creates => "/etc/dirsrv/slapd-${name}/consumer_${replica}_init.done",
                 require => [
@@ -168,7 +179,7 @@ define ds_389::replication(
               content => template('ds_389/replication_agreement.erb'),
             }
             exec { "Create replication agreement for supplier ${replica}: ${name}":
-              command => "ldapmodify -h ${server_host} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/supplier_${replica}.ldif ; touch /etc/dirsrv/slapd-${name}/supplier_${replica}.done", # lint:ignore:140chars
+              command => "ldapmodify -${_opts} ${protocol}://${server_host}:${server_port} -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/supplier_${replica}.ldif ; touch /etc/dirsrv/slapd-${name}/supplier_${replica}.done", # lint:ignore:140chars
               path    => '/usr/bin:/bin',
               creates => "/etc/dirsrv/slapd-${name}/supplier_${replica}.done",
               require => [
@@ -186,7 +197,7 @@ define ds_389::replication(
                 content => template('ds_389/replication_init.erb'),
               }
               exec { "Initialize supplier ${replica}: ${name}":
-                command => "ldapmodify -h ${server_host} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/supplier_${replica}_init.ldif ; touch /etc/dirsrv/slapd-${name}/supplier_${replica}_init.done", # lint:ignore:140chars
+                command => "ldapmodify -${_opts} ${protocol}://${server_host}:${server_port} -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/supplier_${replica}_init.ldif ; touch /etc/dirsrv/slapd-${name}/supplier_${replica}_init.done", # lint:ignore:140chars
                 path    => '/usr/bin:/bin',
                 creates => "/etc/dirsrv/slapd-${name}/supplier_${replica}_init.done",
                 require => [
@@ -209,7 +220,7 @@ define ds_389::replication(
               content => template('ds_389/replication_agreement.erb'),
             }
             exec { "Create replication agreement for hub ${replica}: ${name}":
-              command => "ldapmodify -h ${server_host} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/hub_${replica}.ldif ; touch /etc/dirsrv/slapd-${name}/hub_${replica}.done", # lint:ignore:140chars
+              command => "ldapmodify -${_opts} ${protocol}://${server_host}:${server_port} -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/hub_${replica}.ldif ; touch /etc/dirsrv/slapd-${name}/hub_${replica}.done", # lint:ignore:140chars
               path    => '/usr/bin:/bin',
               creates => "/etc/dirsrv/slapd-${name}/hub_${replica}.done",
               require => [
@@ -228,7 +239,7 @@ define ds_389::replication(
                 require => Anchor["${name}_replication_suppliers"],
               }
               exec { "Initialize hub ${replica}: ${name}":
-                command => "ldapmodify -h ${server_host} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/hub_${replica}_init.ldif ; touch /etc/dirsrv/slapd-${name}/hub_${replica}_init.done", # lint:ignore:140chars
+                command => "ldapmodify -${_opts} ${protocol}://${server_host}:${server_port} -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/hub_${replica}_init.ldif ; touch /etc/dirsrv/slapd-${name}/hub_${replica}_init.done", # lint:ignore:140chars
                 path    => '/usr/bin:/bin',
                 creates => "/etc/dirsrv/slapd-${name}/hub_${replica}_init.done",
                 require => [
@@ -252,7 +263,7 @@ define ds_389::replication(
               require => Anchor["${name}_replication_hubs"],
             }
             exec { "Create replication agreement for consumer ${replica}: ${name}":
-              command => "ldapmodify -h ${server_host} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/consumer_${replica}.ldif ; touch /etc/dirsrv/slapd-${name}/consumer_${replica}.done", # lint:ignore:140chars
+              command => "ldapmodify -${_opts} ${protocol}://${server_host}:${server_port} -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/consumer_${replica}.ldif ; touch /etc/dirsrv/slapd-${name}/consumer_${replica}.done", # lint:ignore:140chars
               path    => '/usr/bin:/bin',
               creates => "/etc/dirsrv/slapd-${name}/consumer_${replica}.done",
               require => [
@@ -271,7 +282,7 @@ define ds_389::replication(
                 require => Anchor["${name}_replication_consumers"],
               }
               exec { "Initialize consumer ${replica}: ${name}":
-                command => "ldapmodify -h ${server_host} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/consumer_${replica}_init.ldif ; touch /etc/dirsrv/slapd-${name}/consumer_${replica}_init.done", # lint:ignore:140chars
+                command => "ldapmodify -${_opts} ${protocol}://${server_host}:${server_port} -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/consumer_${replica}_init.ldif ; touch /etc/dirsrv/slapd-${name}/consumer_${replica}_init.done", # lint:ignore:140chars
                 path    => '/usr/bin:/bin',
                 creates => "/etc/dirsrv/slapd-${name}/consumer_${replica}_init.done",
                 require => [
@@ -297,7 +308,7 @@ define ds_389::replication(
     content => template('ds_389/replication.erb'),
   }
   exec { "Set up replication: ${name}":
-    command => "ldapmodify -h ${server_host} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/replication.ldif ; touch /etc/dirsrv/slapd-${name}/replication.done", # lint:ignore:140chars
+    command => "ldapmodify -${_opts} ${protocol}://${server_host}:${server_port} -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/replication.ldif ; touch /etc/dirsrv/slapd-${name}/replication.done", # lint:ignore:140chars
     path    => '/usr/bin:/bin',
     creates => "/etc/dirsrv/slapd-${name}/replication.done",
     require => [
