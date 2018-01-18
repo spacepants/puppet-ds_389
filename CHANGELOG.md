@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
 
+## Supported Release 1.1.3
+### Summary
+This release adds additional support for StartTLS. ldapadd and ldapmodify actions now connect via the URI, and can connect with StartTLS via the `starttls` param. nsds5ReplicaTransportInfo can be set to 'TLS' as well.
+
+### Changed
+* ldapadd / ldapmodify commands now connect via URI.
+* ldapadd / ldapmodify commands now can connect with StartTLS.
+
 ## Supported Release 1.1.2
 ### Summary
 This release adds the ability to customize nsds5ReplicaTransportInfo for replication. It defaults to 'LDAP', but can be set to 'SSL' via the `replica_transport` param.

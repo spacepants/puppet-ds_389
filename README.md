@@ -338,10 +338,10 @@ The following defines are typically called from an instance.
 * `server_host`: The fqdn for the instance. _Default: $::fqdn_
 * `server_port`: The port to use for non-SSL traffic. _Default: 389_
 * `server_ssl_port`: The port to use for SSL traffic. _Default: 636_
+* `minssf`: The minimum security strength for connections. _Default: 0_
 * `subject_alt_names`: An array of subject alt names, if using self-signed certificates. _Optional._
 * `replication`: A replication config hash. See replication.pp. _Optional._
 * `ssl`: An ssl config hash. See ssl.pp. _Optional._
-* `minssf`: The minimum security strength for connections. _Optional._
 * `ssl_version_min`: The minimum TLS version the instance should support. _Optional._
 * `schema_extensions`: A hash of schemas to ensure. See schema.pp. _Optional._
 * `modify_ldifs`: A hash of ldif modify files. See modify.pp. Optional. _Optional._
@@ -356,6 +356,8 @@ The following defines are typically called from an instance.
 * `root_dn_pass`: The password to use when calling ldapmodify. _Required._
 * `server_host`: The host to use when calling ldapmodify. _Default: $::fqdn_
 * `server_port`: The port to use when calling ldapmodify. _Default: 389_
+* `protocol`: The protocol to use when calling ldapmodify. _Default: 'ldap'_
+* `starttls`: Whether to use StartTLS when calling ldapmodify. _Default: false_
 * `user`: The owner of the created ldif file. *Default: $::ds_389::user*
 * `group`: The group of the created ldif file. *Default: $::ds_389::group*
 
@@ -367,6 +369,8 @@ The following defines are typically called from an instance.
 * `root_dn_pass`: The password to use when calling ldapadd. _Required._
 * `server_host`: The host to use when calling ldapadd. _Default: $::fqdn_
 * `server_port`: The port to use when calling ldapadd. _Default: 389_
+* `protocol`: The protocol to use when calling ldapadd. _Default: 'ldap'_
+* `starttls`: Whether to use StartTLS when calling ldapadd. _Default: false_
 * `user`: The owner of the created ldif file. *Default: $::ds_389::user*
 * `group`: The group of the created ldif file. *Default: $::ds_389::group*
 
@@ -379,6 +383,8 @@ The following defines are typically called from an instance.
 * `replication_user`: The name of the replication user. _Default: 'Replication Manager'_
 * `server_host`: The host to use when calling ldapmodify. _Default: $::fqdn_
 * `server_port`: The port to use when calling ldapmodify. _Default: 389_
+* `protocol`: The protocol to use when calling ldapmodify. _Default: 'ldap'_
+* `starttls`: Whether to use StartTLS when calling ldapmodify. _Default: false_
 * `replica_port`: The port to use for replication. _Default: 389_
 * `replica_transport`: The transport type to use for replication. _Default: LDAP_
 * `user`: The owner of the created ldif file. *Default: $::ds_389::user*
