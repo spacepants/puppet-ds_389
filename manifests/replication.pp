@@ -119,7 +119,7 @@ define ds_389::replication(
 
       if $consumers {
         $consumers.each |$replica| {
-          if $replica != $name {
+          if $replica != $name and $replica != $::fqdn {
             file { "/etc/dirsrv/slapd-${name}/consumer_${replica}.ldif":
               ensure  => file,
               mode    => '0440',
@@ -170,7 +170,7 @@ define ds_389::replication(
 
       if $suppliers {
         $suppliers.each |$replica| {
-          if $replica != $name {
+          if $replica != $name and $replica != $::fqdn {
             file { "/etc/dirsrv/slapd-${name}/supplier_${replica}.ldif":
               ensure  => file,
               mode    => '0440',
@@ -211,7 +211,7 @@ define ds_389::replication(
       }
       if $hubs {
         $hubs.each |$replica| {
-          if $replica != $name {
+          if $replica != $name and $replica != $::fqdn {
             file { "/etc/dirsrv/slapd-${name}/hub_${replica}.ldif":
               ensure  => file,
               mode    => '0440',
@@ -253,7 +253,7 @@ define ds_389::replication(
       }
       if $consumers {
         $consumers.each |$replica| {
-          if $replica != $name {
+          if $replica != $name and $replica != $::fqdn {
             file { "/etc/dirsrv/slapd-${name}/consumer_${replica}.ldif":
               ensure  => file,
               mode    => '0440',
