@@ -23,10 +23,10 @@
 # @param server_host The fqdn for the instance. Default: $::fqdn
 # @param server_port The port to use for non-SSL traffic. Default: 389
 # @param server_ssl_port The port to use for SSL traffic. Default: 636
+# @param minssf The minimum security strength for connections. Default: 0
 # @param subject_alt_names An array of subject alt names, if using self-signed certificates. Optional.
 # @param replication A replication config hash. See replication.pp. Optional.
 # @param ssl An ssl config hash. See ssl.pp. Optional.
-# @param minssf The minimum security strength for connections. Optional.
 # @param ssl_version_min The minimum TLS version the instance should support. Optional.
 # @param schema_extensions A hash of schemas to ensure. See schema.pp. Optional.
 # @param modify_ldifs A hash of ldif modify files. See modify.pp. Optional. Optional.
@@ -44,10 +44,10 @@ define ds_389::instance(
   String                            $server_host           = $::fqdn,
   Integer                           $server_port           = 389,
   Integer                           $server_ssl_port       = 636,
+  Integer                           $minssf                = 0,
   Optional[Array]                   $subject_alt_names     = undef,
   Optional[Hash]                    $replication           = undef,
   Optional[Hash]                    $ssl                   = undef,
-  Optional[Integer]                 $minssf                = undef,
   Optional[String]                  $ssl_version_min       = undef,
   Optional[Hash]                    $schema_extensions     = undef,
   Optional[Hash]                    $modify_ldifs          = undef,
@@ -317,6 +317,14 @@ define ds_389::instance(
   # service
   ::ds_389::service { $server_id: }
 
+  # if we're setting a minimum ssf, pass starttls flag to ldapadd/modify
+  if $minssf > 0 {
+    $_starttls = true
+  }
+  else {
+    $_starttls = false
+  }
+
   # ldif replication
   if $replication {
     ::ds_389::replication { $server_id:
@@ -333,6 +341,7 @@ define ds_389::instance(
       init_suppliers      => $replication['init_suppliers'],
       init_hubs           => $replication['init_hubs'],
       init_consumers      => $replication['init_consumers'],
+      starttls            => $_starttls,
       replica_port        => $replication['replica_port'],
       replica_transport   => $replication['replica_transport'],
       root_dn             => $root_dn,
@@ -360,6 +369,7 @@ define ds_389::instance(
         root_dn_pass => $root_dn_pass,
         server_host  => $server_host,
         server_port  => $server_port,
+        starttls     => $_starttls,
         source       => $source,
         user         => $user,
         group        => $group,
@@ -381,6 +391,7 @@ define ds_389::instance(
         root_dn_pass => $root_dn_pass,
         server_host  => $server_host,
         server_port  => $server_port,
+        starttls     => $_starttls,
         source       => $source,
         user         => $user,
         group        => $group,
@@ -402,6 +413,7 @@ define ds_389::instance(
         root_dn_pass => $root_dn_pass,
         server_host  => $server_host,
         server_port  => $server_port,
+        starttls     => $_starttls,
         source       => $source,
         user         => $user,
         group        => $group,

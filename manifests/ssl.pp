@@ -52,7 +52,7 @@ define ds_389::ssl(
     content => template('ds_389/ssl.erb'),
   }
   exec { "Import ssl ldif: ${name}":
-    command => "ldapmodify -h ${server_host} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/ssl.ldif ; touch /etc/dirsrv/slapd-${name}/ssl.done", # lint:ignore:140chars
+    command => "ldapmodify -xH ldap://${server_host}:${server_port} -D \"${root_dn}\" -w ${root_dn_pass} -f /etc/dirsrv/slapd-${name}/ssl.ldif ; touch /etc/dirsrv/slapd-${name}/ssl.done", # lint:ignore:140chars
     path    => '/usr/bin:/bin',
     creates => "/etc/dirsrv/slapd-${name}/ssl.done",
     require => File["/etc/dirsrv/slapd-${name}/ssl.ldif"],

@@ -385,7 +385,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Set up replication: specdirectory').with(
-              command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/replication.done',
             ).that_requires('File[/etc/dirsrv/slapd-specdirectory/replication.ldif]')
@@ -406,6 +406,7 @@ nsds5BeginReplicaRefresh: start
               suffix: 'dc=test,dc=org',
               server_host: 'ldap.test.org',
               server_port: 1389,
+              starttls: true,
               replica_port: 1636,
               replica_transport: 'SSL',
               user: 'custom_user',
@@ -426,7 +427,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Set up replication: specdirectory').with(
-              command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
+              command: 'ldapmodify -ZxH ldap://ldap.test.org:1389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/replication.done',
             ).that_requires('File[/etc/dirsrv/slapd-specdirectory/replication.ldif]')
@@ -460,7 +461,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Set up replication: specdirectory').with(
-              command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/replication.done',
             ).that_requires('File[/etc/dirsrv/slapd-specdirectory/replication.ldif]')
@@ -480,7 +481,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Create replication agreement for consumer consumer1: specdirectory').with(
-              command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/consumer_consumer1.done',
             ).that_requires(
@@ -521,7 +522,7 @@ nsds5BeginReplicaRefresh: start
             }
             it {
               is_expected.to contain_exec('Initialize consumer consumer1: specdirectory').with(
-                command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done', # rubocop:disable LineLength
+                command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done', # rubocop:disable LineLength
                 path: '/usr/bin:/bin',
                 creates: '/etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done',
               ).that_requires(
@@ -543,7 +544,8 @@ nsds5BeginReplicaRefresh: start
               role: 'hub',
               suffix: 'dc=test,dc=org',
               server_host: 'ldap.test.org',
-              server_port: 1389,
+              server_port: 1636,
+              protocol: 'ldaps',
               replica_port: 1636,
               replica_transport: 'SSL',
               user: 'custom_user',
@@ -565,7 +567,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Set up replication: specdirectory').with(
-              command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldaps://ldap.test.org:1636 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/replication.done',
             ).that_requires('File[/etc/dirsrv/slapd-specdirectory/replication.ldif]')
@@ -585,7 +587,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Create replication agreement for consumer consumer1: specdirectory').with(
-              command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldaps://ldap.test.org:1636 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/consumer_consumer1.done',
             ).that_requires('File[/etc/dirsrv/slapd-specdirectory/consumer_consumer1.ldif]')
@@ -627,7 +629,7 @@ nsds5BeginReplicaRefresh: start
             }
             it {
               is_expected.to contain_exec('Initialize consumer consumer1: specdirectory').with(
-                command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done', # rubocop:disable LineLength
+                command: 'ldapmodify -xH ldap://ldap.test.org:1389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done', # rubocop:disable LineLength
                 path: '/usr/bin:/bin',
                 creates: '/etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done',
               ).that_requires(
@@ -670,7 +672,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Set up replication: specdirectory').with(
-              command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/replication.done',
             ).that_requires('File[/etc/dirsrv/slapd-specdirectory/replication.ldif]')
@@ -694,7 +696,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Create replication agreement for supplier supplier1: specdirectory').with(
-              command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/supplier_supplier1.ldif ; touch /etc/dirsrv/slapd-specdirectory/supplier_supplier1.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/supplier_supplier1.ldif ; touch /etc/dirsrv/slapd-specdirectory/supplier_supplier1.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/supplier_supplier1.done',
             ).that_requires(
@@ -716,7 +718,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Create replication agreement for hub hub1: specdirectory').with(
-              command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/hub_hub1.ldif ; touch /etc/dirsrv/slapd-specdirectory/hub_hub1.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/hub_hub1.ldif ; touch /etc/dirsrv/slapd-specdirectory/hub_hub1.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/hub_hub1.done',
             ).that_requires(
@@ -738,7 +740,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Create replication agreement for consumer consumer1: specdirectory').with(
-              command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/consumer_consumer1.done',
             ).that_requires(
@@ -795,7 +797,7 @@ nsds5BeginReplicaRefresh: start
             }
             it {
               is_expected.to contain_exec('Initialize supplier supplier1: specdirectory').with(
-                command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/supplier_supplier1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/supplier_supplier1_init.done', # rubocop:disable LineLength
+                command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/supplier_supplier1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/supplier_supplier1_init.done', # rubocop:disable LineLength
                 path: '/usr/bin:/bin',
                 creates: '/etc/dirsrv/slapd-specdirectory/supplier_supplier1_init.done',
               ).that_requires(
@@ -846,7 +848,7 @@ nsds5BeginReplicaRefresh: start
             }
             it {
               is_expected.to contain_exec('Initialize hub hub1: specdirectory').with(
-                command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/hub_hub1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/hub_hub1_init.done', # rubocop:disable LineLength
+                command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/hub_hub1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/hub_hub1_init.done', # rubocop:disable LineLength
                 path: '/usr/bin:/bin',
                 creates: '/etc/dirsrv/slapd-specdirectory/hub_hub1_init.done',
               ).that_requires(
@@ -897,7 +899,7 @@ nsds5BeginReplicaRefresh: start
             }
             it {
               is_expected.to contain_exec('Initialize consumer consumer1: specdirectory').with(
-                command: 'ldapmodify -h foo.example.com -p 389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done', # rubocop:disable LineLength
+                command: 'ldapmodify -xH ldap://foo.example.com:389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done', # rubocop:disable LineLength
                 path: '/usr/bin:/bin',
                 creates: '/etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done',
               ).that_requires(
@@ -944,7 +946,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Set up replication: specdirectory').with(
-              command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://ldap.test.org:1389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/replication.ldif ; touch /etc/dirsrv/slapd-specdirectory/replication.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/replication.done',
             ).that_requires('File[/etc/dirsrv/slapd-specdirectory/replication.ldif]')
@@ -964,7 +966,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Create replication agreement for supplier supplier1: specdirectory').with(
-              command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/supplier_supplier1.ldif ; touch /etc/dirsrv/slapd-specdirectory/supplier_supplier1.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://ldap.test.org:1389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/supplier_supplier1.ldif ; touch /etc/dirsrv/slapd-specdirectory/supplier_supplier1.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/supplier_supplier1.done',
             ).that_requires('File[/etc/dirsrv/slapd-specdirectory/supplier_supplier1.ldif]')
@@ -981,7 +983,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Create replication agreement for hub hub1: specdirectory').with(
-              command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/hub_hub1.ldif ; touch /etc/dirsrv/slapd-specdirectory/hub_hub1.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://ldap.test.org:1389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/hub_hub1.ldif ; touch /etc/dirsrv/slapd-specdirectory/hub_hub1.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/hub_hub1.done',
             ).that_requires(
@@ -1003,7 +1005,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Create replication agreement for consumer consumer1: specdirectory').with(
-              command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://ldap.test.org:1389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/consumer_consumer1.done',
             ).that_requires(
@@ -1067,7 +1069,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Initialize supplier supplier1: specdirectory').with(
-              command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/supplier_supplier1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/supplier_supplier1_init.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://ldap.test.org:1389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/supplier_supplier1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/supplier_supplier1_init.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/supplier_supplier1_init.done',
             ).that_requires(
@@ -1124,7 +1126,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Initialize hub hub1: specdirectory').with(
-              command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/hub_hub1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/hub_hub1_init.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://ldap.test.org:1389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/hub_hub1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/hub_hub1_init.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/hub_hub1_init.done',
             ).that_requires(
@@ -1181,7 +1183,7 @@ nsds5BeginReplicaRefresh: start
           }
           it {
             is_expected.to contain_exec('Initialize consumer consumer1: specdirectory').with(
-              command: 'ldapmodify -h ldap.test.org -p 1389 -x -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done', # rubocop:disable LineLength
+              command: 'ldapmodify -xH ldap://ldap.test.org:1389 -D "cn=Directory Manager" -w supersecure -f /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.ldif ; touch /etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done', # rubocop:disable LineLength
               path: '/usr/bin:/bin',
               creates: '/etc/dirsrv/slapd-specdirectory/consumer_consumer1_init.done',
             ).that_requires(
