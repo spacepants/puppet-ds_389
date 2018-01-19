@@ -3,8 +3,8 @@
 read -r -d '' REINIT << EOM
 dn: cn=${PT_replica_name}Agreement,cn=replica,cn="${PT_suffix}",cn=mapping tree,cn=config
 changetype: modify
-replace: nsds5BeginReplicaRefresh
-nsds5BeginReplicaRefresh: start
+replace: nsDS5BeginReplicaRefresh
+nsDS5BeginReplicaRefresh: start
 EOM
 
 if [ $PT_starttls ]
