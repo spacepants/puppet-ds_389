@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org).
 
+## Supported Release 1.1.5
+### Summary
+This release adds some additional fixes for replication.
+
+### Changed
+* Fixed a bug where the nsDS5ReplicaRoot wasn't being set correctly in the replication agreement.
+* Cleaned up replication attributes.
+* Made the replication agreement cn more explicit.
+
 ## Supported Release 1.1.4
 ### Summary
 Fixed a bug with replication logic.
