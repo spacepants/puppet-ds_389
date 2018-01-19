@@ -12,7 +12,7 @@ Fixed a bug with replication logic.
 
 ## Supported Release 1.1.3
 ### Summary
-This release adds additional support for StartTLS. ldapadd and ldapmodify actions now connect via the URI, and can connect with StartTLS via the `starttls` param. nsds5ReplicaTransportInfo can be set to 'TLS' as well.
+This release adds additional support for StartTLS. ldapadd and ldapmodify actions now connect via the URI, and can connect with StartTLS via the `starttls` param. nsDS5ReplicaTransportInfo can be set to 'TLS' as well.
 
 ### Changed
 * ldapadd / ldapmodify commands now connect via URI.
@@ -20,7 +20,7 @@ This release adds additional support for StartTLS. ldapadd and ldapmodify action
 
 ## Supported Release 1.1.2
 ### Summary
-This release adds the ability to customize nsds5ReplicaTransportInfo for replication. It defaults to 'LDAP', but can be set to 'SSL' via the `replica_transport` param.
+This release adds the ability to customize nsDS5ReplicaTransportInfo for replication. It defaults to 'LDAP', but can be set to 'SSL' via the `replica_transport` param.
 
 ### Changed
 * Parameterize replication transport.

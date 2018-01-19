@@ -28,13 +28,13 @@ nsIdleTimeout: 0
 dn: cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5replica
+objectClass: nsDS5replica
 objectClass: extensibleObject
 cn: replica
 nsDS5ReplicaRoot: dc=example,dc=com
 nsDS5ReplicaType: 2
-nsds5flags: 0
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5Flags: 0
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
 '
   end
 
@@ -54,13 +54,13 @@ nsIdleTimeout: 0
 dn: cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5replica
+objectClass: nsDS5replica
 objectClass: extensibleObject
 cn: replica
 nsDS5ReplicaRoot: dc=test,dc=org
 nsDS5ReplicaType: 2
-nsds5flags: 0
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5Flags: 0
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
 '
   end
 
@@ -87,14 +87,14 @@ nsslapd-changelogdir: /var/lib/dirsrv/slapd-specdirectory/changelogdb
 dn: cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5replica
+objectClass: nsDS5replica
 objectClass: extensibleObject
 cn: replica
 nsDS5ReplicaRoot: dc=example,dc=com
 nsDS5ReplicaType: 2
-nsds5flags: 1
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
-nsds5ReplicaPurgeDelay: 604800
+nsDS5Flags: 1
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaPurgeDelay: 604800
 '
   end
 
@@ -121,14 +121,14 @@ nsslapd-changelogdir: /var/lib/dirsrv/slapd-specdirectory/changelogdb
 dn: cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5replica
+objectClass: nsDS5replica
 objectClass: extensibleObject
 cn: replica
 nsDS5ReplicaRoot: dc=test,dc=org
 nsDS5ReplicaType: 2
-nsds5flags: 1
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
-nsds5ReplicaPurgeDelay: 604800
+nsDS5Flags: 1
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaPurgeDelay: 604800
 '
   end
 
@@ -155,14 +155,14 @@ nsslapd-changelogdir: /var/lib/dirsrv/slapd-specdirectory/changelogdb
 dn: cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5replica
+objectClass: nsDS5replica
 objectClass: extensibleObject
 cn: replica
 nsDS5ReplicaRoot: dc=example,dc=com
 nsDS5ReplicaType: 3
-nsds5flags: 1
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
-nsds5ReplicaPurgeDelay: 604800
+nsDS5Flags: 1
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaPurgeDelay: 604800
 nsDS5ReplicaId: 1
 '
   end
@@ -190,165 +190,165 @@ nsslapd-changelogdir: /var/lib/dirsrv/slapd-specdirectory/changelogdb
 dn: cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5replica
+objectClass: nsDS5replica
 objectClass: extensibleObject
 cn: replica
 nsDS5ReplicaRoot: dc=test,dc=org
 nsDS5ReplicaType: 3
-nsds5flags: 1
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
-nsds5ReplicaPurgeDelay: 604800
+nsDS5Flags: 1
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaPurgeDelay: 604800
 nsDS5ReplicaId: 100
 '
   end
 
   let(:consumer1_agreement) do
-    'dn: cn=consumer1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to consumer1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5ReplicationAgreement
-cn: consumer1Agreement
-nsds5ReplicaHost: consumer1
-nsds5ReplicaPort: 389
-nsds5ReplicaTransportInfo: LDAP
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
-nsds5ReplicaBindMethod: SIMPLE
-nsds5ReplicaCredentials: supersecret
-nsds5ReplicaRoot: cn=Directory Manager
+objectClass: nsDS5ReplicationAgreement
+cn: specdirectory to consumer1 agreement
+nsDS5ReplicaHost: consumer1
+nsDS5ReplicaPort: 389
+nsDS5ReplicaTransportInfo: LDAP
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaBindMethod: SIMPLE
+nsDS5ReplicaCredentials: supersecret
+nsDS5ReplicaRoot: dc=example,dc=com
 description: replication agreement from specdirectory to consumer1
 '
   end
 
   let(:consumer1_agreement_custom) do
-    'dn: cn=consumer1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to consumer1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5ReplicationAgreement
-cn: consumer1Agreement
-nsds5ReplicaHost: consumer1
-nsds5ReplicaPort: 1636
-nsds5ReplicaTransportInfo: SSL
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
-nsds5ReplicaBindMethod: SIMPLE
-nsds5ReplicaCredentials: supersecret
-nsds5ReplicaRoot: cn=Directory Manager
+objectClass: nsDS5ReplicationAgreement
+cn: specdirectory to consumer1 agreement
+nsDS5ReplicaHost: consumer1
+nsDS5ReplicaPort: 1636
+nsDS5ReplicaTransportInfo: SSL
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaBindMethod: SIMPLE
+nsDS5ReplicaCredentials: supersecret
+nsDS5ReplicaRoot: dc=test,dc=org
 description: replication agreement from specdirectory to consumer1
 '
   end
 
   let(:hub1_agreement) do
-    'dn: cn=hub1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to hub1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5ReplicationAgreement
-cn: hub1Agreement
-nsds5ReplicaHost: hub1
-nsds5ReplicaPort: 389
-nsds5ReplicaTransportInfo: LDAP
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
-nsds5ReplicaBindMethod: SIMPLE
-nsds5ReplicaCredentials: supersecret
-nsds5ReplicaRoot: cn=Directory Manager
+objectClass: nsDS5ReplicationAgreement
+cn: specdirectory to hub1 agreement
+nsDS5ReplicaHost: hub1
+nsDS5ReplicaPort: 389
+nsDS5ReplicaTransportInfo: LDAP
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaBindMethod: SIMPLE
+nsDS5ReplicaCredentials: supersecret
+nsDS5ReplicaRoot: dc=example,dc=com
 description: replication agreement from specdirectory to hub1
 '
   end
 
   let(:hub1_agreement_custom) do
-    'dn: cn=hub1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to hub1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5ReplicationAgreement
-cn: hub1Agreement
-nsds5ReplicaHost: hub1
-nsds5ReplicaPort: 1636
-nsds5ReplicaTransportInfo: SSL
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
-nsds5ReplicaBindMethod: SIMPLE
-nsds5ReplicaCredentials: supersecret
-nsds5ReplicaRoot: cn=Directory Manager
+objectClass: nsDS5ReplicationAgreement
+cn: specdirectory to hub1 agreement
+nsDS5ReplicaHost: hub1
+nsDS5ReplicaPort: 1636
+nsDS5ReplicaTransportInfo: SSL
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaBindMethod: SIMPLE
+nsDS5ReplicaCredentials: supersecret
+nsDS5ReplicaRoot: dc=test,dc=org
 description: replication agreement from specdirectory to hub1
 '
   end
 
   let(:supplier1_agreement) do
-    'dn: cn=supplier1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to supplier1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5ReplicationAgreement
-cn: supplier1Agreement
-nsds5ReplicaHost: supplier1
-nsds5ReplicaPort: 389
-nsds5ReplicaTransportInfo: LDAP
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
-nsds5ReplicaBindMethod: SIMPLE
-nsds5ReplicaCredentials: supersecret
-nsds5ReplicaRoot: cn=Directory Manager
+objectClass: nsDS5ReplicationAgreement
+cn: specdirectory to supplier1 agreement
+nsDS5ReplicaHost: supplier1
+nsDS5ReplicaPort: 389
+nsDS5ReplicaTransportInfo: LDAP
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaBindMethod: SIMPLE
+nsDS5ReplicaCredentials: supersecret
+nsDS5ReplicaRoot: dc=example,dc=com
 description: replication agreement from specdirectory to supplier1
 '
   end
 
   let(:supplier1_agreement_custom) do
-    'dn: cn=supplier1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to supplier1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5ReplicationAgreement
-cn: supplier1Agreement
-nsds5ReplicaHost: supplier1
-nsds5ReplicaPort: 1636
-nsds5ReplicaTransportInfo: SSL
-nsds5ReplicaBindDN: cn=Replication Manager,cn=config
-nsds5ReplicaBindMethod: SIMPLE
-nsds5ReplicaCredentials: supersecret
-nsds5ReplicaRoot: cn=Directory Manager
+objectClass: nsDS5ReplicationAgreement
+cn: specdirectory to supplier1 agreement
+nsDS5ReplicaHost: supplier1
+nsDS5ReplicaPort: 1636
+nsDS5ReplicaTransportInfo: SSL
+nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaBindMethod: SIMPLE
+nsDS5ReplicaCredentials: supersecret
+nsDS5ReplicaRoot: dc=test,dc=org
 description: replication agreement from specdirectory to supplier1
 '
   end
 
   let(:consumer1_init) do
-    'dn: cn=consumer1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to consumer1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: modify
-replace: nsds5BeginReplicaRefresh
-nsds5BeginReplicaRefresh: start
+replace: nsDS5BeginReplicaRefresh
+nsDS5BeginReplicaRefresh: start
 '
   end
 
   let(:consumer1_init_custom) do
-    'dn: cn=consumer1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to consumer1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: modify
-replace: nsds5BeginReplicaRefresh
-nsds5BeginReplicaRefresh: start
+replace: nsDS5BeginReplicaRefresh
+nsDS5BeginReplicaRefresh: start
 '
   end
 
   let(:hub1_init) do
-    'dn: cn=hub1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to hub1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: modify
-replace: nsds5BeginReplicaRefresh
-nsds5BeginReplicaRefresh: start
+replace: nsDS5BeginReplicaRefresh
+nsDS5BeginReplicaRefresh: start
 '
   end
 
   let(:hub1_init_custom) do
-    'dn: cn=hub1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to hub1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: modify
-replace: nsds5BeginReplicaRefresh
-nsds5BeginReplicaRefresh: start
+replace: nsDS5BeginReplicaRefresh
+nsDS5BeginReplicaRefresh: start
 '
   end
 
   let(:supplier1_init) do
-    'dn: cn=supplier1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to supplier1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: modify
-replace: nsds5BeginReplicaRefresh
-nsds5BeginReplicaRefresh: start
+replace: nsDS5BeginReplicaRefresh
+nsDS5BeginReplicaRefresh: start
 '
   end
 
   let(:supplier1_init_custom) do
-    'dn: cn=supplier1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to supplier1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: modify
-replace: nsds5BeginReplicaRefresh
-nsds5BeginReplicaRefresh: start
+replace: nsDS5BeginReplicaRefresh
+nsDS5BeginReplicaRefresh: start
 '
   end
 

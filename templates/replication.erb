@@ -22,15 +22,15 @@ nsslapd-changelogdir: /var/lib/dirsrv/slapd-<%= @name %>/changelogdb
 dn: cn=replica,cn="<%= @suffix %>",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5replica
+objectClass: nsDS5replica
 objectClass: extensibleObject
 cn: replica
 nsDS5ReplicaRoot: <%= @suffix %>
 nsDS5ReplicaType: <%= @type %>
-nsds5flags: <%= @flags %>
-nsds5ReplicaBindDN: <%= @_bind_dn %>
+nsDS5Flags: <%= @flags %>
+nsDS5ReplicaBindDN: <%= @_bind_dn %>
 <%- if @role != 'consumer' -%>
-nsds5ReplicaPurgeDelay: <%= @purge_delay %>
+nsDS5ReplicaPurgeDelay: <%= @purge_delay %>
 <%- end -%>
 <%- if @role == 'supplier' -%>
 nsDS5ReplicaId: <%= @id %>

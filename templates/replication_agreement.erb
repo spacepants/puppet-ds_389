@@ -1,15 +1,15 @@
-dn: cn=<%= @replica %>Agreement,cn=replica,cn="<%= @suffix %>",cn=mapping tree,cn=config
+dn: cn=<%= @name %> to <%= @replica %> agreement,cn=replica,cn="<%= @suffix %>",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
-objectClass: nsds5ReplicationAgreement
-cn: <%= @replica %>Agreement
-nsds5ReplicaHost: <%= @replica %>
-nsds5ReplicaPort: <%= @replica_port %>
-nsds5ReplicaTransportInfo: <%= @replica_transport %>
-nsds5ReplicaBindDN: <%= @_bind_dn %>
-nsds5ReplicaBindMethod: SIMPLE
-nsds5ReplicaCredentials: <%= @replication_pass %>
-nsds5ReplicaRoot: <%= @root_dn %>
+objectClass: nsDS5ReplicationAgreement
+cn: <%= @name %> to <%= @replica %> agreement
+nsDS5ReplicaHost: <%= @replica %>
+nsDS5ReplicaPort: <%= @replica_port %>
+nsDS5ReplicaTransportInfo: <%= @replica_transport %>
+nsDS5ReplicaBindDN: <%= @_bind_dn %>
+nsDS5ReplicaBindMethod: SIMPLE
+nsDS5ReplicaCredentials: <%= @replication_pass %>
+nsDS5ReplicaRoot: <%= @suffix %>
 description: replication agreement from <%= @name %> to <%= @replica %>
 <%- if @attribute_list -%>
 nsDS5ReplicatedAttributeList: (objectclass=*) $ EXCLUDE <%= @attribute_list %>
