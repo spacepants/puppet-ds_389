@@ -1,7 +1,7 @@
 #!/bin/sh
 
 read -r -d '' REINIT << EOM
-dn: cn=${PT_replica_name}Agreement,cn=replica,cn="${PT_suffix}",cn=mapping tree,cn=config
+dn: cn=${PT_instance_name} to ${PT_replica_name} agreement,cn=replica,cn="${PT_suffix}",cn=mapping tree,cn=config
 changetype: modify
 replace: nsDS5BeginReplicaRefresh
 nsDS5BeginReplicaRefresh: start

@@ -1,8 +1,8 @@
-dn: cn=<%= @replica %>Agreement,cn=replica,cn="<%= @suffix %>",cn=mapping tree,cn=config
+dn: cn=<%= @name %> to <%= @replica %> agreement,cn=replica,cn="<%= @suffix %>",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
 objectClass: nsDS5ReplicationAgreement
-cn: <%= @replica %>Agreement
+cn: <%= @name %> to <%= @replica %> agreement
 nsDS5ReplicaHost: <%= @replica %>
 nsDS5ReplicaPort: <%= @replica_port %>
 nsDS5ReplicaTransportInfo: <%= @replica_transport %>

@@ -203,11 +203,11 @@ nsDS5ReplicaId: 100
   end
 
   let(:consumer1_agreement) do
-    'dn: cn=consumer1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to consumer1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
 objectClass: nsDS5ReplicationAgreement
-cn: consumer1Agreement
+cn: specdirectory to consumer1 agreement
 nsDS5ReplicaHost: consumer1
 nsDS5ReplicaPort: 389
 nsDS5ReplicaTransportInfo: LDAP
@@ -220,11 +220,11 @@ description: replication agreement from specdirectory to consumer1
   end
 
   let(:consumer1_agreement_custom) do
-    'dn: cn=consumer1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to consumer1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
 objectClass: nsDS5ReplicationAgreement
-cn: consumer1Agreement
+cn: specdirectory to consumer1 agreement
 nsDS5ReplicaHost: consumer1
 nsDS5ReplicaPort: 1636
 nsDS5ReplicaTransportInfo: SSL
@@ -237,11 +237,11 @@ description: replication agreement from specdirectory to consumer1
   end
 
   let(:hub1_agreement) do
-    'dn: cn=hub1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to hub1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
 objectClass: nsDS5ReplicationAgreement
-cn: hub1Agreement
+cn: specdirectory to hub1 agreement
 nsDS5ReplicaHost: hub1
 nsDS5ReplicaPort: 389
 nsDS5ReplicaTransportInfo: LDAP
@@ -254,11 +254,11 @@ description: replication agreement from specdirectory to hub1
   end
 
   let(:hub1_agreement_custom) do
-    'dn: cn=hub1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to hub1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
 objectClass: nsDS5ReplicationAgreement
-cn: hub1Agreement
+cn: specdirectory to hub1 agreement
 nsDS5ReplicaHost: hub1
 nsDS5ReplicaPort: 1636
 nsDS5ReplicaTransportInfo: SSL
@@ -271,11 +271,11 @@ description: replication agreement from specdirectory to hub1
   end
 
   let(:supplier1_agreement) do
-    'dn: cn=supplier1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to supplier1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
 objectClass: nsDS5ReplicationAgreement
-cn: supplier1Agreement
+cn: specdirectory to supplier1 agreement
 nsDS5ReplicaHost: supplier1
 nsDS5ReplicaPort: 389
 nsDS5ReplicaTransportInfo: LDAP
@@ -288,11 +288,11 @@ description: replication agreement from specdirectory to supplier1
   end
 
   let(:supplier1_agreement_custom) do
-    'dn: cn=supplier1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to supplier1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: add
 objectClass: top
 objectClass: nsDS5ReplicationAgreement
-cn: supplier1Agreement
+cn: specdirectory to supplier1 agreement
 nsDS5ReplicaHost: supplier1
 nsDS5ReplicaPort: 1636
 nsDS5ReplicaTransportInfo: SSL
@@ -305,7 +305,7 @@ description: replication agreement from specdirectory to supplier1
   end
 
   let(:consumer1_init) do
-    'dn: cn=consumer1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to consumer1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: modify
 replace: nsDS5BeginReplicaRefresh
 nsDS5BeginReplicaRefresh: start
@@ -313,7 +313,7 @@ nsDS5BeginReplicaRefresh: start
   end
 
   let(:consumer1_init_custom) do
-    'dn: cn=consumer1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to consumer1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: modify
 replace: nsDS5BeginReplicaRefresh
 nsDS5BeginReplicaRefresh: start
@@ -321,7 +321,7 @@ nsDS5BeginReplicaRefresh: start
   end
 
   let(:hub1_init) do
-    'dn: cn=hub1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to hub1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: modify
 replace: nsDS5BeginReplicaRefresh
 nsDS5BeginReplicaRefresh: start
@@ -329,7 +329,7 @@ nsDS5BeginReplicaRefresh: start
   end
 
   let(:hub1_init_custom) do
-    'dn: cn=hub1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to hub1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: modify
 replace: nsDS5BeginReplicaRefresh
 nsDS5BeginReplicaRefresh: start
@@ -337,7 +337,7 @@ nsDS5BeginReplicaRefresh: start
   end
 
   let(:supplier1_init) do
-    'dn: cn=supplier1Agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to supplier1 agreement,cn=replica,cn="dc=example,dc=com",cn=mapping tree,cn=config
 changetype: modify
 replace: nsDS5BeginReplicaRefresh
 nsDS5BeginReplicaRefresh: start
@@ -345,7 +345,7 @@ nsDS5BeginReplicaRefresh: start
   end
 
   let(:supplier1_init_custom) do
-    'dn: cn=supplier1Agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
+    'dn: cn=specdirectory to supplier1 agreement,cn=replica,cn="dc=test,dc=org",cn=mapping tree,cn=config
 changetype: modify
 replace: nsDS5BeginReplicaRefresh
 nsDS5BeginReplicaRefresh: start
