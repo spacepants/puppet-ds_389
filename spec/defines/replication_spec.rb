@@ -35,6 +35,7 @@ nsDS5ReplicaRoot: dc=example,dc=com
 nsDS5ReplicaType: 2
 nsDS5Flags: 0
 nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaId: 65535
 '
   end
 
@@ -61,6 +62,7 @@ nsDS5ReplicaRoot: dc=test,dc=org
 nsDS5ReplicaType: 2
 nsDS5Flags: 0
 nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
+nsDS5ReplicaId: 65535
 '
   end
 
@@ -95,6 +97,7 @@ nsDS5ReplicaType: 2
 nsDS5Flags: 1
 nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
 nsDS5ReplicaPurgeDelay: 604800
+nsDS5ReplicaId: 65535
 '
   end
 
@@ -129,6 +132,7 @@ nsDS5ReplicaType: 2
 nsDS5Flags: 1
 nsDS5ReplicaBindDN: cn=Replication Manager,cn=config
 nsDS5ReplicaPurgeDelay: 604800
+nsDS5ReplicaId: 65535
 '
   end
 

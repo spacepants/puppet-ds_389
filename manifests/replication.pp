@@ -112,10 +112,12 @@ define ds_389::replication(
     'consumer': {
       $type = 2
       $flags = 0
+      $_id = 65535
     }
     'hub': {
       $type = 2
       $flags = 1
+      $_id = 65535
 
       if $consumers {
         $consumers.each |$replica| {
@@ -164,6 +166,7 @@ define ds_389::replication(
       unless $id {
         fail('$id is required when declaring a replication supplier')
       }
+      $_id = $id
 
       $type = 3
       $flags = 1

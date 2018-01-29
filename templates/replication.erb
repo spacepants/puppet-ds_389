@@ -32,6 +32,4 @@ nsDS5ReplicaBindDN: <%= @_bind_dn %>
 <%- if @role != 'consumer' -%>
 nsDS5ReplicaPurgeDelay: <%= @purge_delay %>
 <%- end -%>
-<%- if @role == 'supplier' -%>
-nsDS5ReplicaId: <%= @id %>
-<%- end -%>
+nsDS5ReplicaId: <%= @_id %>
