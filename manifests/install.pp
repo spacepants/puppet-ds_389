@@ -35,7 +35,7 @@ class ds_389::install {
   if $::ds_389::params::service_type == 'systemd' {
     ini_setting { 'dirsrv ulimit':
       ensure  => present,
-      path    => '/etc/sysconfig/dirsrv.systemd',
+      path    => "${::ds_389::params::limits_config_dir}/dirsrv.systemd",
       section => 'Service',
       setting => 'LimitNOFILE',
       value   => '8192',
@@ -45,7 +45,7 @@ class ds_389::install {
   else {
     file_line { 'dirsrv ulimit':
       ensure  => present,
-      path    => '/etc/sysconfig/dirsrv',
+      path    => "${::ds_389::params::limits_config_dir}/dirsrv",
       line    => 'ulimit -n 8192',
       require => Package[$::ds_389::package_name],
     }

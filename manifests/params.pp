@@ -11,6 +11,7 @@ class ds_389::params {
       $nsstools_package_name = 'libnss3-tools'
       $setup_ds = 'setup-ds'
       $cacert_rehash = 'c_rehash'
+      $limits_config_dir = '/etc/default'
       case $::operatingsystemmajrelease {
         '8', '16.04': {
           $service_type = 'systemd'
@@ -28,6 +29,7 @@ class ds_389::params {
       $nsstools_package_name = 'nss-tools'
       $setup_ds = 'setup-ds.pl'
       $cacert_rehash = 'cacertdir_rehash'
+      $limits_config_dir = '/etc/sysconfig'
       case $::operatingsystemmajrelease {
         '7': {
           $service_type = 'systemd'
