@@ -37,7 +37,6 @@ describe 'ds_389' do
           )
         }
 
-        # rubocop:disable RepeatedExample
         case os_facts[:osfamily]
         when 'Debian'
           it {
@@ -61,7 +60,7 @@ describe 'ds_389' do
             it {
               is_expected.to contain_ini_setting('dirsrv ulimit').with(
                 ensure: 'present',
-                path: '/etc/sysconfig/dirsrv.systemd',
+                path: '/etc/default/dirsrv.systemd',
                 section: 'Service',
                 setting: 'LimitNOFILE',
                 value: '8192',
@@ -72,7 +71,7 @@ describe 'ds_389' do
             it {
               is_expected.to contain_file_line('dirsrv ulimit').with(
                 ensure: 'present',
-                path: '/etc/sysconfig/dirsrv',
+                path: '/etc/default/dirsrv',
                 line: 'ulimit -n 8192',
               ).that_requires('Package[389-ds-base]')
             }
@@ -117,7 +116,6 @@ describe 'ds_389' do
             }
           end
         end
-        # rubocop:enable RepeatedExample
       end
 
       context 'with parameter overrides' do
