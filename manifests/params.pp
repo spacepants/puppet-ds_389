@@ -13,7 +13,7 @@ class ds_389::params {
       $cacert_rehash = 'c_rehash'
       $limits_config_dir = '/etc/default'
       case $::operatingsystemmajrelease {
-        '8', '16.04': {
+        '8', '9', '16.04': {
           $service_type = 'systemd'
           $ssl_version_min_support = true
         }

@@ -56,7 +56,7 @@ describe 'ds_389' do
           }
 
           case os_facts[:operatingsystemmajrelease]
-          when '8', '16.04'
+          when '8', '9', '16.04'
             it {
               is_expected.to contain_ini_setting('dirsrv ulimit').with(
                 ensure: 'present',
