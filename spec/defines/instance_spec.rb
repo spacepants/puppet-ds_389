@@ -59,7 +59,7 @@ describe 'ds_389::instance' do
           }
 
           case os_facts[:operatingsystemmajrelease]
-          when '8', '16.04'
+          when '8', '9', '16.04'
             it {
               is_expected.to contain_exec('stop specdirectory to create new token').with(
                 command: '/bin/systemctl stop dirsrv@specdirectory ; sleep 2',
@@ -758,7 +758,7 @@ describe 'ds_389::instance' do
           }
 
           case os_facts[:operatingsystemmajrelease]
-          when '8', '16.04'
+          when '8', '9', '16.04'
             it {
               is_expected.to contain_exec('stop ldap01 to create new token').with(
                 command: '/bin/systemctl stop dirsrv@ldap01 ; sleep 2',

@@ -424,7 +424,7 @@ The following defines are typically called from an instance.
 
 ## Limitations
 
-This module is currently tested and working on RedHat and CentOS 6, and 7, Debian 8, and Ubuntu 14.04, and 16.04 systems.
+This module is currently tested and working on RedHat and CentOS 6, and 7, Debian 8, and 9, Ubuntu 14.04, and 16.04 systems.
 
 ## Development
 

@@ -178,7 +178,7 @@ nsslapd-securePort: 1636
         case os_facts[:osfamily]
         when 'Debian'
           case os_facts[:operatingsystemmajrelease]
-          when '8', '16.04'
+          when '8', '9', '16.04'
             it {
               is_expected.to contain_file('/etc/dirsrv/slapd-specdirectory/ssl.ldif').with(
                 ensure: 'file',
@@ -290,7 +290,7 @@ nsslapd-securePort: 1636
         case os_facts[:osfamily]
         when 'Debian'
           case os_facts[:operatingsystemmajrelease]
-          when '8', '16.04'
+          when '8', '9', '16.04'
             it {
               is_expected.to contain_file('/etc/dirsrv/slapd-ldap01/ssl.ldif').with(
                 ensure: 'file',
